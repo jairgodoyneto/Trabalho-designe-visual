@@ -3,20 +3,20 @@ namespace Salao.Models
 {
     public class Atendimento
     {
-        private Barbeiro barbeiro;
+        private Barbeiro _barbeiro;
 
-        private Cliente cliente;
+        private Cliente _cliente;
 
-        private Servico servico;
+        private Servico _servico;
 
-        private DateTime data;
+        private DateTime _data;
 
         public Atendimento()
         {
-            barbeiro = new Barbeiro();
-            cliente = new Cliente();
-            servico = new Servico();
-            data = new DateTime();
+            _barbeiro = new Barbeiro();
+            _cliente = new Cliente();
+            _servico = new Servico();
+            _data = new DateTime();
         }
         public Barbeiro Barbeiro;
         public Cliente Cliente;

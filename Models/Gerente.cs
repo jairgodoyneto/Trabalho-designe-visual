@@ -7,11 +7,11 @@ namespace Salao.Models
 {
     public class Gerente : Pessoa
     {
-        private string senha;
+        private string _senha;
         
         public Gerente():base()
         {
-            senha = String.Empty;
+            _senha = String.Empty;
         }
     }
 }

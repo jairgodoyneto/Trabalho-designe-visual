@@ -7,32 +7,32 @@ namespace Salao.Models
 {
     public class Servico
     {
-        private string nome;
-        private string descricao;
-        private float custo;
-        private int duracao;
+        private string _nome;
+        private string _descricao;
+        private float _custo;
+        private int _duracao;
 
         public Servico()
         {
-            nome= String.Empty;
-            descricao= String.Empty;
-            custo = 0;
-            duracao = 0;
+            _nome= String.Empty;
+            _descricao= String.Empty;
+            _custo = 0;
+            _duracao = 0;
         }
         public string Nome
         {
-            get => nome; 
-            set => nome = value; 
+            get => _nome; 
+            set => _nome = value; 
         }
         public string Descricao 
         {
-            get => descricao;
-            set => descricao = value;
+            get => _descricao;
+            set => _descricao = value;
         }
         public float Custo
         {
-            get => custo;
-            set => custo = value;
+            get => _custo;
+            set => _custo = value;
         }
     }
 }

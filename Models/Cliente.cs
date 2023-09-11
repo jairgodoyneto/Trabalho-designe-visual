@@ -7,19 +7,19 @@ namespace Salao.Models
 {
     public class Cliente : Pessoa
     {
-        private string senha;
+        private string _senha;
         public Cliente(): base()
         {
-            senha = String.Empty;
+            _senha = String.Empty;
         }
-        public Cliente(string senha, string cpf, string nome) : base(nome, cpf)
+        public Cliente(int id,string senha, string cpf, string nome) : base(id,nome, cpf)
         {
-            this.senha = senha;
+            _senha = senha;
         }
         public string Senha
         {
-            get =>  senha; 
-            set => senha = value;
+            get =>  _senha; 
+            set => _senha = value;
         }
          
     }

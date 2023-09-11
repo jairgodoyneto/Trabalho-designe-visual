@@ -1006,19 +1006,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Aluno\\.nuget\\packages\\": {}
+    "C:\\Users\\jair1\\.nuget\\packages\\": {},
+    "D:\\visual studio 2022\\sdk e componentes\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Aluno\\Estacionamento\\Salao\\Salao.csproj",
+      "projectUniqueName": "D:\\Dev\\Barbearia\\Trabalho-designe-visual\\Salao.csproj",
       "projectName": "Salao",
-      "projectPath": "C:\\Users\\Aluno\\Estacionamento\\Salao\\Salao.csproj",
-      "packagesPath": "C:\\Users\\Aluno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Aluno\\Estacionamento\\Salao\\obj\\",
+      "projectPath": "D:\\Dev\\Barbearia\\Trabalho-designe-visual\\Salao.csproj",
+      "packagesPath": "C:\\Users\\jair1\\.nuget\\packages\\",
+      "outputPath": "D:\\Dev\\Barbearia\\Trabalho-designe-visual\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\visual studio 2022\\sdk e componentes\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Aluno\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jair1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

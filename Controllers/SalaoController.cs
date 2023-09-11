@@ -7,7 +7,7 @@ namespace Salao.Controllers;
 [Route("[controller]")]
 public class SalaoController : ControllerBase
 {
-    List<Cliente> clientes = new();
+    private static List<Cliente> clientes = new();
     [HttpGet()]
     [Route("Listar")]
     public IActionResult Listar()
@@ -20,5 +20,19 @@ public class SalaoController : ControllerBase
     {
         clientes.Add(cliente);
         return Created ("", cliente);
+    }
+    [HttpGet()]
+    [Route("Buscar/{nome}")]
+    public IActionResult Buscar([FromRoute] string nome)
+    {
+        Cliente cliente = clientes.Find(x => x.Nome == nome);
+        if (cliente is not null)
+        {
+            return Ok(cliente);
+        }
+        else
+        {
+            return NotFound();
+        }
     }
 }

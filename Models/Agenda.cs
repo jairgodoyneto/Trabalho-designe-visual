@@ -7,15 +7,15 @@ namespace Salao.Models
 {
     public class Agenda
     {
-        private Barbeiro barbeiro;
-        private List<Atendimento> atendimentos;
-        private List<DateTime> HorariosLivres;
+        private Barbeiro _barbeiro;
+        private List<Atendimento> _atendimentos;
+        private List<DateTime> _HorariosLivres;
 
         public Agenda()
         {
-            barbeiro = new Barbeiro();
-            atendimentos = new List<Atendimento>();
-            HorariosLivres = new List<DateTime>();
+            _barbeiro = new Barbeiro();
+            _atendimentos = new List<Atendimento>();
+            _HorariosLivres = new List<DateTime>();
         }
     }
 }

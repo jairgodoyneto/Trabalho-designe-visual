@@ -7,11 +7,16 @@ namespace Salao.Models
 {
     public class Barbeiro : Pessoa
     {
-        private string senha;
+        private string _senha;
 
         public Barbeiro() : base()
         {
-            senha = String.Empty;
+            _senha = String.Empty;
+        }
+        public string Senha
+        {
+            get => _senha;
+            set => _senha=value;
         }
     }
 }

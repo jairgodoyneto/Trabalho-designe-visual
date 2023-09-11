@@ -7,34 +7,36 @@ namespace Salao.Models
 {
     public abstract class Pessoa
     {
-        private int id;
-        private string nome;
-        private string cpf;
+        private int _id;
+        private string _nome;
+        private string _cpf;
 
         public Pessoa()
         {
-            nome = String.Empty;
-            cpf = String.Empty;
+            _id=0;
+            _nome = String.Empty;
+            _cpf = String.Empty;
         }
-        public Pessoa(string nome, string cpf)
+        public Pessoa(int id,string nome, string cpf)
         {
-            this.nome = nome;
-            this.cpf = cpf;
+            _id = id;
+            _nome = nome;
+            _cpf = cpf;
         }
         public int Id
         {
-            get =>  id;
-            set => id = value; 
+            get =>  _id;
+            set => _id = value; 
         }
         public string Nome
         {
-            get => nome;
-            set => nome = value; 
+            get => _nome;
+            set => _nome = value; 
         }
         public string Cpf
         {
-            get => cpf; 
-            set => cpf = value; 
+            get => _cpf; 
+            set => _cpf = value; 
         }
     }
 }
