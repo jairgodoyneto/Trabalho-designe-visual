@@ -13,5 +13,10 @@ namespace Salao.Models
         {
             _senha = String.Empty;
         }
+        public String Senha
+        {
+            get=>_senha;
+            set=>_senha=value;
+        }
     }
 }
