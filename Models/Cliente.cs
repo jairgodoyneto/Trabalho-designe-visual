@@ -12,7 +12,7 @@ namespace Salao.Models
         {
             _senha = String.Empty;
         }
-        public Cliente(int id,string senha, string cpf, string nome) : base(id,nome, cpf)
+        public Cliente(string senha, string cpf, string nome) : base(nome, cpf)
         {
             _senha = senha;
         }

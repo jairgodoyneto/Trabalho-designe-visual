@@ -1,11 +1,9 @@
 
 namespace Salao.Models
 {
-    public class Atendimento
+    public abstract class Atendimento
     {
         private Barbeiro _barbeiro;
-
-        private Cliente _cliente;
 
         private Servico _servico;
 
@@ -14,13 +12,11 @@ namespace Salao.Models
         public Atendimento()
         {
             _barbeiro = new Barbeiro();
-            _cliente = new Cliente();
             _servico = new Servico();
-            _data = new DateTime();
+            _data = DateTime.Now;
         }
-        public Barbeiro Barbeiro;
-        public Cliente Cliente;
-        public Servico Servico;
-        public DateTime Data;
+        public Barbeiro Barbeiro{get => _barbeiro;set =>_barbeiro =value;}
+        public Servico Servico{get => _servico;set =>_servico =value;}
+        public DateTime Data{get => _data;set =>_data =value;}
     }
 }

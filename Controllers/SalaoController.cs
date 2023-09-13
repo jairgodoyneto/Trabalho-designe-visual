@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Salao.Data;
 using Salao.Models;
 
 namespace Salao.Controllers;
@@ -7,23 +9,7 @@ namespace Salao.Controllers;
 [Route("[controller]")]
 public class SalaoController : ControllerBase
 {
-    private static List<Cliente> clientes = new();
-    private static List<Barbeiro> barbeiros = new();
-    private static List<Gerente> gerentes= new();
-    private static List<Pessoa> todos = new();
-
-    [HttpGet()]
-    [Route("Listar Todos")]
-    public IActionResult ListarTodos()
-    {
-        return Ok(todos);
-    }
-    [HttpGet()]
-    [Route("Listar Clientes")]
-    public IActionResult ListarClientes()
-    {
-        return Ok(clientes);
-    }
+    /*
     [HttpPost()]
     [Route("Inserir Cliente")]
     public IActionResult InserirCliente(Cliente cliente)
@@ -75,4 +61,5 @@ public class SalaoController : ControllerBase
     {
         return Created("",atendimento);
     }
+    */
 }
