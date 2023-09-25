@@ -5,7 +5,7 @@ namespace Salao.Data;
 public class SalaoDbContext : DbContext
 {
     public DbSet<Cliente>? Cliente{ get;set;}
-    public DbSet<Cliente>? Barbeiro{ get;set;}
+    public DbSet<Barbeiro>? Barbeiro{ get;set;}
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlite("DataSource=salao.db;Cache=shared");

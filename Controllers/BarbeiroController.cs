@@ -30,9 +30,9 @@ public class BarbeiroController : ControllerBase
         if (_context.Barbeiro is null)
             return NotFound();
         Barbeiro barbeiro;
-        if ((Barbeiro= await _context.Barbeiro.FindAsync(id)) is null)
+        if ((barbeiro= await _context.Barbeiro.FindAsync(id)) is null)
             return NotFound();
-        return Barbeiro;
+        return barbeiro;
     }
     [HttpPost()]
     [Route("inserir Barbeiro")]
