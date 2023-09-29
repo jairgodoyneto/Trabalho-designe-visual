@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace Salao.Models
 {
     public class Servico
     {
+        private int _id;
         private string _nome;
         private string _descricao;
         private float _custo;
@@ -18,6 +20,12 @@ namespace Salao.Models
             _descricao= String.Empty;
             _custo = 0;
             _duracao = 0;
+        }
+        [Key]
+        public int Id
+        {
+            get=> _id;
+            set=> _id=value;
         }
         public string Nome
         {

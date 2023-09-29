@@ -1,6 +1,8 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Salao.Models
 {
-    class AtendimentoAgendado : Atendimento
+    public class AtendimentoAgendado : Atendimento
     {
         private Cliente _cliente;
 
@@ -8,5 +10,6 @@ namespace Salao.Models
         {
             _cliente = new Cliente();
         }
+        public Cliente Cliente{get=> _cliente;set=> _cliente=value;}
     }
 }

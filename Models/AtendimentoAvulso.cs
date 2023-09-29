@@ -2,7 +2,7 @@ using Salao.Models;
 
 namespace AtendimentoAvulso
 {
-    class AtendimentoAvulso : Atendimento
+    public class AtendimentoAvulso : Atendimento
     {
         AtendimentoAvulso() : base()
         {

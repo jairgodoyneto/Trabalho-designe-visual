@@ -1,4 +1,8 @@
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+
 namespace Salao.Models
 {
     public abstract class Atendimento
@@ -15,7 +19,11 @@ namespace Salao.Models
             _servico = new Servico();
             _data = DateTime.Now;
         }
-        public Barbeiro Barbeiro{get => _barbeiro;set =>_barbeiro =value;}
+        [Key]
+        public int Id {get;set;}
+        [ForeignKey("Barbeiro")]
+        public int BarbeiroId{get;set;}
+        public virtual Barbeiro Barbeiro{get => _barbeiro;set =>_barbeiro =value;}
         public Servico Servico{get => _servico;set =>_servico =value;}
         public DateTime Data{get => _data;set =>_data =value;}
     }
