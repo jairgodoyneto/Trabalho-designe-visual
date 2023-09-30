@@ -45,7 +45,7 @@ public class ClienteController :ControllerBase
     {
         if (_context is null) return NotFound();
         if (_context.Cliente is null) return NotFound();
-        var clienteTemp = await _context.Cliente.FindAsync(cliente.Id);
+        var clienteTemp = await _context.Cliente.FindAsync(cliente.ClienteId);
         if(clienteTemp is null) return NotFound();
         _context.Cliente.Update(cliente);
         await _context.SaveChangesAsync();

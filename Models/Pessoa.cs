@@ -11,19 +11,19 @@ namespace Salao.Models
         
         private string _nome;
         private string _cpf;
-
+        private string _email;
         public Pessoa()
         {
             _nome = String.Empty;
             _cpf = String.Empty;
+            _email=string.Empty;
         }
-        public Pessoa(string nome, string cpf)
+        public Pessoa(string nome, string cpf,string email)
         {
             _nome = nome;
             _cpf = cpf;
+            _email=email;
         }
-        [Key]
-        public int Id{get;set;}
         public string Nome
         {
             get => _nome;
@@ -33,6 +33,11 @@ namespace Salao.Models
         {
             get => _cpf; 
             set => _cpf = value; 
+        }
+        public string email
+        {
+            get=> _email;
+            set=> _email=value;
         }
     }
 }

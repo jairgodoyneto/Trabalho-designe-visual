@@ -21,10 +21,14 @@ namespace Salao.Models
         }
         [Key]
         public int Id {get;set;}
-        [ForeignKey("Barbeiro")]
+        
         public int BarbeiroId{get;set;}
+        [ForeignKey("Barbeiro")]
         public virtual Barbeiro Barbeiro{get => _barbeiro;set =>_barbeiro =value;}
-        public Servico Servico{get => _servico;set =>_servico =value;}
+
+        public int Servico_id{get;set;}
+        [ForeignKey("Servico")]
+        public Servico Servico{get=>_servico;set=>_servico=value;}
         public DateTime Data{get => _data;set =>_data =value;}
     }
 }

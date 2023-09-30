@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,5 +19,10 @@ namespace Salao.Models
             _HorariosLivres = new List<DateTime>();
             _unidadeAtendimento = new UnidadeAtendimento();
         }
+        public int BarbeiroId{get;set;}
+        [ForeignKey("BarbeiroId")]
+        public Barbeiro Barbeiro{get=>_barbeiro;set=>_barbeiro=value;}
+
+        
     }
 }

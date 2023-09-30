@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace Salao.Models
 {
     public class Barbeiro : Pessoa
     {
+        private int _barbeiroId;
         private string _senha;
 
         public Barbeiro() : base()
@@ -18,5 +20,7 @@ namespace Salao.Models
             get => _senha;
             set => _senha=value;
         }
+        [Key]
+        public int BarbeiroId{get=>_barbeiroId;set=>_barbeiroId=value;}
     }
 }
