@@ -26,8 +26,8 @@ public class ClienteController :ControllerBase
     {
         if (_context is null) return NotFound();
         if (_context.Cliente is null) return NotFound();
-        Cliente cliente;
-        if ((cliente= await _context.Cliente.FindAsync(id)) is null)
+        Cliente? cliente = await _context.Cliente.FindAsync(id);
+        if (cliente is null)
             return NotFound();
         return cliente;
     }

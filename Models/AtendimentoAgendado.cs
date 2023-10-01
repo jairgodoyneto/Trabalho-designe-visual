@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Salao.Models
 {
+    [Table("AtendimentoAgendado")]
     public class AtendimentoAgendado : Atendimento
     {
         private Cliente _cliente;
@@ -10,6 +12,8 @@ namespace Salao.Models
         {
             _cliente = new Cliente();
         }
-        public Cliente Cliente{get=> _cliente;set=> _cliente=value;}
+        [ForeignKey("ClienteId")]
+        public int ClienteId{get;set;}
+        public virtual Cliente Cliente{get=> _cliente;set=> _cliente=value;}
     }
 }

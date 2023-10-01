@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Salao.Models
 {
+    [Table("Servico")]
     public class Servico
     {
         private int _id;
@@ -22,7 +24,7 @@ namespace Salao.Models
             _duracao = 0;
         }
         [Key]
-        public int Id
+        public int ServicoId
         {
             get=> _id;
             set=> _id=value;

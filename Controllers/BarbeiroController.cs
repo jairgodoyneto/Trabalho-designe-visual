@@ -19,19 +19,16 @@ public class BarbeiroController : ControllerBase
     [Route("Listar Barbeiro")]
     public async Task<ActionResult<IEnumerable<Barbeiro>>> ListarBarbeiro()
     {
-        if (_context.Barbeiro is null)
-            return NotFound();
+        if (_context.Barbeiro is null)return NotFound();
         return await _context.Barbeiro.ToListAsync();
     }
     [HttpGet()]
     [Route("buscar/{id}")]
     public async Task<ActionResult<Barbeiro>> Buscar([FromRoute] int id)
     {
-        if (_context.Barbeiro is null)
-            return NotFound();
-        Barbeiro barbeiro;
-        if ((barbeiro= await _context.Barbeiro.FindAsync(id)) is null)
-            return NotFound();
+        if (_context.Barbeiro is null)return NotFound();
+        Barbeiro? barbeiro = await _context.Barbeiro.FindAsync(id);
+        if (barbeiro is null)return NotFound();
         return barbeiro;
     }
     [HttpPost()]

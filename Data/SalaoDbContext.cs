@@ -8,6 +8,7 @@ public class SalaoDbContext : DbContext
     public DbSet<Barbeiro>? Barbeiro{get;set;}
     public DbSet<AtendimentoAgendado>? AtendimentoAgendado{get;set;}
     public DbSet<Gerente>? Gerente{get;set;}
+    public DbSet<Servico>? Servico{get;set;}
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlite("DataSource=salao.db;Cache=shared");

@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
 
 namespace Salao.Models
 {
+    [Table("Cliente")]
     public class Cliente : Pessoa
     {
         public int _clienteId;
@@ -15,7 +17,7 @@ namespace Salao.Models
         {
             _senha = String.Empty;
         }
-        public Cliente(string senha, string cpf, string nome) : base(nome, cpf, email)
+        public Cliente(string senha, string cpf, string nome, string email) : base(nome, cpf, email)
         {
             _senha = senha;
         }
