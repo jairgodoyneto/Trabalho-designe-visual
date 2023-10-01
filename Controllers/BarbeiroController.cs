@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Salao.Data;
 using Salao.Models;
-
+using Microsoft.OpenApi.Models;
 namespace Salao.Controllers;
 
 [ApiController]
@@ -39,5 +39,16 @@ public class BarbeiroController : ControllerBase
         _context.SaveChanges();
         return Created("",Barbeiro);
     }
-
+    [HttpDelete()]
+    [Route("excluir/{id}")]
+    public async Task<ActionResult> Excluir(int id)
+    {
+        if (_context is null) return NotFound();
+        if (_context.Barbeiro is null) return NotFound();
+        var barbeiroTemp = await _context.Barbeiro.FindAsync(id);
+        if(barbeiroTemp is null) return NotFound();
+        _context.Remove(barbeiroTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
 }
