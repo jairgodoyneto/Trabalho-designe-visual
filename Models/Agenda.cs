@@ -41,6 +41,7 @@ namespace Salao.Models
         public int BarbeiroId{get;set;}
         public virtual Barbeiro Barbeiro{get=>_barbeiro;set=>_barbeiro=value;}
         [ForeignKey("AtendimentoId")]
-        public  List<Atendimento> Atendimentos{get=> _atendimentos;set=> _atendimentos=value;}
+        public virtual List<Atendimento> Atendimentos{get=> _atendimentos;set=> _atendimentos=value;}
+        public List<DateTime> HorariosLivres{get=>_horariosLivres;set=>_horariosLivres=value;}
     }
 }

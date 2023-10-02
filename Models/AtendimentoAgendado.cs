@@ -12,6 +12,10 @@ namespace Salao.Models
         {
             _cliente = new Cliente();
         }
+        public AtendimentoAgendado(Barbeiro barbeiro, Servico servico, DateTime data, Cliente cliente): base(barbeiro,servico,data)
+        {
+            _cliente=cliente;
+        }
         [ForeignKey("ClienteId")]
         public int ClienteId{get;set;}
         public virtual Cliente Cliente{get=> _cliente;set=> _cliente=value;}
