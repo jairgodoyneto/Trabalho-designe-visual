@@ -7,7 +7,7 @@ public class SalaoDbContext : DbContext
     public DbSet<Cliente>? Cliente{ get;set;}
     public DbSet<Barbeiro>? Barbeiro{get;set;}
     public DbSet<AtendimentoAgendado>? AtendimentoAgendado{get;set;}
-    public DbSet<AtendimentoAvulso>? AtendimentoAvulso{get;set;}
+    //public DbSet<AtendimentoAvulso>? AtendimentoAvulso{get;set;}
     public DbSet<UnidadeAtendimento>? UnidadeAtendimento{get;set;}
     public DbSet<Gerente>? Gerente{get;set;}
     public DbSet<Servico>? Servico{get;set;}

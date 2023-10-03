@@ -1,0 +1,15 @@
+
+
+
+public static class RegrasCliente
+{
+    public static Agenda agendarHorario(Agenda agenda, datetime Horario)
+    {
+        var agendaTemp=RegrasAgenda.agendar(agenda, horario);
+        if(agendaTemp!=null)
+        {
+
+        }
+        return null;
+    }
+}

@@ -16,8 +16,9 @@ namespace Salao.Models
         {
             _cliente=cliente;
         }
-        [ForeignKey("ClienteId")]
+        
         public int ClienteId{get;set;}
+        [ForeignKey("ClienteId")]
         public  Cliente Cliente{get=> _cliente;set=> _cliente=value;}
     }
 }

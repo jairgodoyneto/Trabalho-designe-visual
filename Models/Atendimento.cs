@@ -25,8 +25,6 @@ namespace Salao.Models
             _servico = servico;
             _data= data;
         }
-        [Key]
-        public int AtendimentoId {get;set;}
         [ForeignKey("BarbeiroId")]
         public int BarbeiroId{get;set;}
         public  Barbeiro Barbeiro{get => _barbeiro;set =>_barbeiro =value;}
