@@ -25,12 +25,24 @@ namespace Salao.Models
             _servico = servico;
             _data= data;
         }
+<<<<<<< HEAD
         public int BarbeiroId{get;set;}
         [ForeignKey("BarbeiroId")]
         public  Barbeiro Barbeiro{get => _barbeiro;set =>_barbeiro =value;}
         public int ServicoId{get;set;}
         [ForeignKey("ServicoId")]
         public Servico Servico{get=>_servico;set=>_servico=value;}
+=======
+        [Key]
+        public int AtendimentoId {get;set;}
+        public int BarbeiroId{get;set;}
+        [ForeignKey("BarbeiroId")]
+        public virtual Barbeiro Barbeiro{get => _barbeiro;set =>_barbeiro =value;}
+        
+        public int ServicoId{get;set;}
+        [ForeignKey("ServicoId")]
+        public virtual Servico Servico{get=>_servico;set=>_servico=value;}
+>>>>>>> parent of cd5e92b (mais mudanças)
         public DateTime Data{get => _data;set =>_data =value;}
 
         public Agenda Agenda { get; set; }

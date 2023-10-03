@@ -11,14 +11,6 @@ public class ClienteController :ControllerBase
     {
         _context = context;
     }
-    [HttpPost()]
-    [Route("inserir Cliente")]
-    public IActionResult Cadastrar(Cliente cliente)
-    {
-        _context.Add(cliente);
-        _context.SaveChanges();
-        return Created("",cliente);
-    }
     [HttpGet()]
     [Route("Listar Clientes")]
     public async Task<ActionResult<IEnumerable<Cliente>>> ListarClientes()
@@ -38,6 +30,14 @@ public class ClienteController :ControllerBase
         if (cliente is null)
             return NotFound();
         return cliente;
+    }
+    [HttpPost()]
+    [Route("inserir Cliente")]
+    public IActionResult Cadastrar(Cliente cliente)
+    {
+        _context.Add(cliente);
+        _context.SaveChanges();
+        return Created("",cliente);
     }
     [HttpPut()]
     [Route("alterar")]

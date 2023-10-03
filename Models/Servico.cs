@@ -44,10 +44,5 @@ namespace Salao.Models
             get => _custo;
             set => _custo = value;
         }
-        public int Duracao
-        {
-            get=>_duracao;
-            set=>_duracao=value;
-        }
     }
 }
