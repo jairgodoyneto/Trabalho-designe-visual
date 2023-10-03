@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Salao.Data;
 
@@ -10,9 +11,11 @@ using Salao.Data;
 namespace Salao.Migrations
 {
     [DbContext(typeof(SalaoDbContext))]
-    partial class SalaoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231003061759_8")]
+    partial class _8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
@@ -46,34 +49,9 @@ namespace Salao.Migrations
                     b.ToTable("AtendimentoAgendado");
                 });
 
-            modelBuilder.Entity("Salao.Models.AtendimentoAvulso", b =>
-                {
-                    b.Property<int>("AtendimentoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BarbeiroId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ServicoId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("AtendimentoId");
-
-                    b.HasIndex("BarbeiroId");
-
-                    b.HasIndex("ServicoId");
-
-                    b.ToTable("AtendimentoAvulso");
-                });
-
             modelBuilder.Entity("Salao.Models.Barbeiro", b =>
                 {
                     b.Property<int>("BarbeiroId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Cpf")
@@ -182,7 +160,7 @@ namespace Salao.Migrations
                     b.Property<int>("Cep")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Endereco")
+                    b.Property<string>("Enderco")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -218,29 +196,10 @@ namespace Salao.Migrations
                     b.Navigation("Servico");
                 });
 
-            modelBuilder.Entity("Salao.Models.AtendimentoAvulso", b =>
-                {
-                    b.HasOne("Salao.Models.Barbeiro", "Barbeiro")
-                        .WithMany()
-                        .HasForeignKey("BarbeiroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Salao.Models.Servico", "Servico")
-                        .WithMany()
-                        .HasForeignKey("ServicoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Barbeiro");
-
-                    b.Navigation("Servico");
-                });
-
             modelBuilder.Entity("Salao.Models.Barbeiro", b =>
                 {
                     b.HasOne("Salao.Models.UnidadeAtendimento", null)
-                        .WithMany("Funcionarios")
+                        .WithMany("Barbeiro")
                         .HasForeignKey("BarbeiroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -248,7 +207,7 @@ namespace Salao.Migrations
 
             modelBuilder.Entity("Salao.Models.UnidadeAtendimento", b =>
                 {
-                    b.Navigation("Funcionarios");
+                    b.Navigation("Barbeiro");
                 });
 #pragma warning restore 612, 618
         }

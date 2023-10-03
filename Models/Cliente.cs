@@ -23,6 +23,7 @@ namespace Salao.Models
             set => _senha = value;
         }
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ClienteId
         {
             get=>_clienteId;

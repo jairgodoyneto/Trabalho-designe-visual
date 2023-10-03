@@ -24,6 +24,7 @@ namespace Salao.Models
             _duracao = 0;
         }
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ServicoId
         {
             get=> _id;

@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Salao.Controllers;
 using Salao.Data;
 using Salao.Models;
-
+namespace Salao.Controllers;
 [ApiController]
 [Route("[controller]")]
 

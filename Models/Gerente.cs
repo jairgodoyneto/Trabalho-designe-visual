@@ -23,6 +23,7 @@ namespace Salao.Models
             set=>_senha=value; 
        }
        [Key]
+       [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
        public int GerenteId{get=>_gerenteId;set=>_gerenteId=value;}
     }
 }
