@@ -25,12 +25,16 @@ namespace Salao.Models
             _servico = servico;
             _data= data;
         }
-        [ForeignKey("BarbeiroId")]
         public int BarbeiroId{get;set;}
+        [ForeignKey("BarbeiroId")]
         public  Barbeiro Barbeiro{get => _barbeiro;set =>_barbeiro =value;}
-        [ForeignKey("ServicoId")]
         public int ServicoId{get;set;}
+        [ForeignKey("ServicoId")]
         public Servico Servico{get=>_servico;set=>_servico=value;}
         public DateTime Data{get => _data;set =>_data =value;}
+
+        public Agenda Agenda { get; set; }
+        [ForeignKey("AgendaId")]
+        public int AgendaId { get; set; }
     }
 }
