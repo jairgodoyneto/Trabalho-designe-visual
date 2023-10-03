@@ -11,7 +11,7 @@ namespace Salao.Models
     [Table("Cliente")]
     public class Cliente : Pessoa
     {
-        public int _clienteId;
+        private int _clienteId;
         private string _senha;
         public Cliente(): base()
         {
@@ -21,16 +21,16 @@ namespace Salao.Models
         {
             _senha = senha;
         }
-        public string Senha
-        {
-            get =>  _senha; 
-            set => _senha = value;
-        }
         [Key]
         public int ClienteId
         {
             get=>_clienteId;
             set=>_clienteId=value;
+        }
+        public string Senha
+        {
+            get =>  _senha; 
+            set => _senha = value;
         }
     }
 }
