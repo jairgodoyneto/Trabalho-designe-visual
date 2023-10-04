@@ -5,8 +5,7 @@ using Salao.Models;
 using Microsoft.OpenApi.Models;
 namespace Salao.Controllers;
 
-[ApiController]
-[Route("[controller]")]
+
 public class BarbeiroController : ControllerBase
 {
     private SalaoDbContext? _context;
@@ -23,7 +22,7 @@ public class BarbeiroController : ControllerBase
         return await _context.Barbeiro.ToListAsync();
     }
     [HttpGet()]
-    [Route("buscar/{id}")]
+    [Route("buscar barbeiro/{id}")]
     public async Task<ActionResult<Barbeiro>> Buscar([FromRoute] int id)
     {
         if (_context.Barbeiro is null)return NotFound();
@@ -40,7 +39,7 @@ public class BarbeiroController : ControllerBase
         return Created("",Barbeiro);
     }
     [HttpDelete()]
-    [Route("excluir/{id}")]
+    [Route("excluir barbeiro/{id}")]
     public async Task<ActionResult> Excluir(int id)
     {
         if (_context is null) return NotFound();

@@ -7,12 +7,12 @@ namespace Salao.Models
 {
     public abstract class Atendimento
     {
-        private Barbeiro _barbeiro;
+        public Barbeiro _barbeiro;
 
-        private Servico _servico;
+        public Servico _servico;
 
-        private DateTime _data;
-        /*
+        public DateTime _data;
+        
         public Atendimento()
         {
             _barbeiro = new Barbeiro();
@@ -24,7 +24,7 @@ namespace Salao.Models
             _barbeiro = barbeiro;
             _servico = servico;
             _data= data;
-        }*/
+        }
 
         public int BarbeiroId{get;set;}
         [ForeignKey("BarbeiroId")]

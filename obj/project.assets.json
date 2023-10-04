@@ -6030,31 +6030,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jair1\\.nuget\\packages\\": {},
-    "D:\\visual studio 2022\\sdk e componentes\\NuGetPackages": {}
+    "C:\\Users\\patri\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Dev\\Barbearia\\Trabalho-designe-visual\\Salao.csproj",
+      "projectUniqueName": "c:\\Users\\patri\\Desktop\\melda\\Trabalho-designe-visual\\Salao.csproj",
       "projectName": "Salao",
-      "projectPath": "D:\\Dev\\Barbearia\\Trabalho-designe-visual\\Salao.csproj",
-      "packagesPath": "C:\\Users\\jair1\\.nuget\\packages\\",
-      "outputPath": "D:\\Dev\\Barbearia\\Trabalho-designe-visual\\obj\\",
+      "projectPath": "c:\\Users\\patri\\Desktop\\melda\\Trabalho-designe-visual\\Salao.csproj",
+      "packagesPath": "C:\\Users\\patri\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\patri\\Desktop\\melda\\Trabalho-designe-visual\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\visual studio 2022\\sdk e componentes\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\jair1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\patri\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6123,7 +6116,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

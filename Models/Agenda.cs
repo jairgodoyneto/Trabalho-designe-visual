@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-
+/*
 namespace Salao.Models
 {
     [Table("Agenda")]
@@ -22,11 +22,12 @@ namespace Salao.Models
             get=>_id;
             set=>_id=value;
         }
-        [ForeignKey("BarbeiroId")]
         public int BarbeiroId{get;set;}
-        public virtual Barbeiro Barbeiro{get=>_barbeiro;set=>_barbeiro=value;}
+        [ForeignKey("BarbeiroId")]
+        public Barbeiro Barbeiro{get=>_barbeiro;set=>_barbeiro=value;}
+        public int AtendimentoId{get;set;}
         [ForeignKey("AtendimentoId")]
-        public virtual List<Atendimento> Atendimentos{get=> _atendimentos;set=> _atendimentos=value;}
+        public List<Atendimento> Atendimentos{get=> _atendimentos;set=> _atendimentos=value;}
         public List<DateTime> HorariosLivres{get=>_horariosLivres;set=>_horariosLivres=value;}
     }
-}
+}*/

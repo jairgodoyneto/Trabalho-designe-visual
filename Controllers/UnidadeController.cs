@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Salao.Data;
 using Salao.Models;
 namespace Salao.Controllers;
-
+/*
 public class UnidadeController : ControllerBase
 {
     private SalaoDbContext? _context;
@@ -64,4 +64,4 @@ public class UnidadeController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok();
     }
-}
+}*/

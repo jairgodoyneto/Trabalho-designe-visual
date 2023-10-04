@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+/*
 namespace Salao.Models
 {
     [Table("UnidadeAtendimento")]
@@ -24,7 +24,8 @@ namespace Salao.Models
         public int UnidadeId { get => _unidadeId; set => _unidadeId = value; }
         public string Endereco { get => _endereco; set => _endereco = value; }
         public int Cep { get => _cep; set => _cep = value; }
+        public int BarbeiroId{get;set;}
         [ForeignKey("BarbeiroId")]
         public List<Barbeiro> Funcionarios { get => _funcionarios; set => _funcionarios = value; }
     }
-}
+}*/

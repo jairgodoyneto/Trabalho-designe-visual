@@ -1,6 +1,6 @@
 
 
-
+/*
 public static class RegrasCliente
 {
     public static Agenda agendarHorario(Agenda agenda, datetime Horario)
@@ -12,4 +12,4 @@ public static class RegrasCliente
         }
         return null;
     }
-}
+}*/

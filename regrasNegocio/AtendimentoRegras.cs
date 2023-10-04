@@ -1,6 +1,6 @@
 
 using Salao.Models;
-
+/*
 public static class AtendimentoRegras
 {
     public static Atendimento criarAtendimento()
@@ -8,4 +8,4 @@ public static class AtendimentoRegras
         
         return null;
     }
-}
+}*/

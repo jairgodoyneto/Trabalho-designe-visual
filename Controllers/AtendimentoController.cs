@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Salao.Data;
 using Salao.Models;
 namespace Salao.Controllers;
-[ApiController]
-[Route("[controller]")]
 
 public class AtendimentoController : ControllerBase
 {
@@ -55,5 +53,14 @@ public class AtendimentoController : ControllerBase
         _context.Remove(atendimentoTemp);
         await _context.SaveChangesAsync();
         return Ok();
+    }
+    [HttpGet()]
+    [Route("buscar Atendimento/{id}")]
+    public async Task<ActionResult<AtendimentoAgendado>> Buscar([FromRoute] int id)
+    {
+        if (_context.Barbeiro is null)return NotFound();
+        AtendimentoAgendado atendimento = await _context.AtendimentoAgendado.FindAsync(id);
+        if (atendimento is null)return NotFound();
+        return atendimento;
     }
 }

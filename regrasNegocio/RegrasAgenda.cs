@@ -1,6 +1,6 @@
 
 using Salao.Models;
-
+/*
 public static class RegrasAgenda
 {
     public static Agenda Agendar(Agenda agenda, DateTime Horario)
@@ -15,4 +15,4 @@ public static class RegrasAgenda
         }
         return null;
     }
-}
+}*/
