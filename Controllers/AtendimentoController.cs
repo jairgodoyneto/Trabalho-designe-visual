@@ -12,24 +12,27 @@ public class AtendimentoController : ControllerBase
         _context = context;
     }
     [HttpPost()]
-    [Route("Novo_Atendimento")]
-    public async Task<IActionResult> CadastrarAsync(AtendimentoAgendado atendimento)
+    [Route("Novo_Atendimento/{ClienteId}/{BarbeiroId}/{ServicoId}")]
+    public async Task<IActionResult> Cadastrar([FromRoute] int ClienteId,[FromRoute] int BarbeiroId,[FromRoute] int ServicoId, int mes,int dia, int hora, int minutos)
     {
-        //if(_context is null) return NotFound();
-        //if(_context.Barbeiro is null) return NotFound();
-        //var barbeiroTemp= await _context.Barbeiro.FindAsync(atendimento.Barbeiro.BarbeiroId);
-        //if (barbeiroTemp is null) return NotFound();
-        //atendimento.Barbeiro=barbeiroTemp;
+        if(_context is null) return NotFound();
+        if(_context.Barbeiro is null) return NotFound();
+        var barbeiroTemp= await _context.Barbeiro.FindAsync(BarbeiroId);
+        if (barbeiroTemp is null) return NotFound();
+        AtendimentoAgendado atendimento = new();
+        atendimento.Barbeiro=barbeiroTemp;
 
-        //if(_context.Cliente is null) return NotFound();
-        //var clienteTemp= await _context.Cliente.FindAsync(atendimento.Cliente.ClienteId);
-        //if (clienteTemp is null) return NotFound();
-        //atendimento.Cliente=clienteTemp;
+        if(_context.Cliente is null) return NotFound();
+        var clienteTemp= await _context.Cliente.FindAsync(ClienteId);
+        if (clienteTemp is null) return NotFound();
+        atendimento.Cliente=clienteTemp;
 
-        //if(_context.Servico is null) return NotFound();
-       // var servicoTemp= await _context.Servico.FindAsync(atendimento.Servico.ServicoId);
-        //if(servicoTemp is null) return NotFound();
-       // atendimento.Servico=servicoTemp;
+        if(_context.Servico is null) return NotFound();
+        var servicoTemp= await _context.Servico.FindAsync(ServicoId);
+        if(servicoTemp is null) return NotFound();
+        atendimento.Servico=servicoTemp;
+
+        atendimento.Data=new DateTime(2023,mes,dia,hora,minutos,0);
 
         _context.Add(atendimento);
         _context.SaveChanges();
@@ -43,7 +46,7 @@ public class AtendimentoController : ControllerBase
         return await _context.AtendimentoAgendado.ToListAsync();
     }
     [HttpDelete()]
-    [Route("Excluir/{id}")]
+    [Route("Excluir atendimento/{id}")]
     public async Task<ActionResult> Excluir(int id)
     {
         if(_context is null) return NotFound();

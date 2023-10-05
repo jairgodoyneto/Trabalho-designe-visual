@@ -5,8 +5,7 @@ using Salao.Models;
 
 namespace Salao.Controllers;
 
-[ApiController]
-[Route("[controller]")]
+
 public class ServicoController : ControllerBase
 {
     private SalaoDbContext? _context;

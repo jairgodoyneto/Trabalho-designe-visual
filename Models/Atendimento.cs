@@ -34,6 +34,7 @@ namespace Salao.Models
         public Servico Servico{get=>_servico;set=>_servico=value;}
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AtendimentoId {get;set;}
        
         public DateTime Data{get => _data;set =>_data =value;}

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Salao.Data;
 using Salao.Models;
 namespace Salao.Controllers;
-/*
+
 public class UnidadeController : ControllerBase
 {
     private SalaoDbContext? _context;
@@ -33,12 +33,25 @@ public class UnidadeController : ControllerBase
         return UnidadeAtendimento;
     }
     [HttpPost()]
-    [Route("inserir Unidade")]
-    public IActionResult Cadastrar(UnidadeAtendimento UnidadeAtendimento)
+    [Route("inserir Unidade/{id}")]
+    public async Task<IActionResult> Cadastrar([FromRoute] List<int> id, string endereco, int cep)
     {
-        _context.Add(UnidadeAtendimento);
+        UnidadeAtendimento unidadeAtendimento = new();
+        foreach (var x in id)
+        {
+            if(_context.Barbeiro == null) return NotFound("Barbeiro vazio");
+            Barbeiro? barbeiro=await _context.Barbeiro.FindAsync(x);
+            if(barbeiro == null)
+            {
+                return NotFound("Barbeiro não encontrado");
+            }
+            unidadeAtendimento.Funcionarios.Add(barbeiro);
+        }
+        unidadeAtendimento.Cep = cep;
+        unidadeAtendimento.Endereco=endereco;
+        _context.Add(unidadeAtendimento);
         _context.SaveChanges();
-        return Created("",UnidadeAtendimento);
+        return Created("",unidadeAtendimento);
     }
     [HttpPut()]
     [Route("alterar unidade atendimento")]
@@ -64,4 +77,4 @@ public class UnidadeController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok();
     }
-}*/
+}

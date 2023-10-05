@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Salao.Data;
 using Salao.Models;
 namespace Salao.Controllers;
-/*
+
 [ApiController]
 [Route("[controller]")]
 public class AgendaController : ControllerBase
@@ -35,15 +35,26 @@ public class AgendaController : ControllerBase
         return Agenda;
     }
     [HttpPost()]
-    [Route("inserir Agenda")]
-    public IActionResult Cadastrar(Agenda Agenda)
+    [Route("inserirAgenda/{barbeiroId}/{unidadeId}")]
+    public async  Task<IActionResult> Cadastrar([FromRoute]int barbeiroId,[FromRoute]int unidadeId)
     {
-        _context.Add(Agenda);
+        if (_context ==null){return NotFound("Base vazia");}
+        if (_context.Barbeiro == null){return NotFound("Base barbeiro vazia");}
+        if (_context.UnidadeAtendimento == null){return NotFound("Base unidade vazia");}
+
+        var barbeiro = await _context.Barbeiro.FindAsync(barbeiroId);
+        if(barbeiro == null){return NotFound("nao achou barbeiro");}
+        var unidadeAtendimento = await _context.UnidadeAtendimento.FindAsync(unidadeId);
+        if(unidadeAtendimento == null){return NotFound("Nao achou unidade");}
+        Agenda agenda= new();
+        agenda.Barbeiro=barbeiro;
+        agenda.Unidade=unidadeAtendimento;
+        _context.Add(agenda);
         _context.SaveChanges();
-        return Created("",Agenda);
+        return Created("",agenda);
     }
     [HttpPut()]
-    [Route("alterar Atendimento Avulso ")]
+    [Route("alterar Agenda ")]
     public async Task<ActionResult> Alterar(Agenda Agenda)
     {
         if (_context is null) return NotFound();
@@ -55,7 +66,7 @@ public class AgendaController : ControllerBase
         return Ok();
     }
     [HttpDelete()]
-    [Route("excluir Atendimento Avulso/{id}")]
+    [Route("excluir Agenda/{id}")]
     public async Task<ActionResult> Excluir(int id)
     {
         if (_context is null) return NotFound();
@@ -66,4 +77,4 @@ public class AgendaController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok();
     }
-}*/
+}

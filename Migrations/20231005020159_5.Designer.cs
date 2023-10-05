@@ -11,8 +11,8 @@ using Salao.Data;
 namespace Salao.Migrations
 {
     [DbContext(typeof(SalaoDbContext))]
-    [Migration("20231002031326_1")]
-    partial class _1
+    [Migration("20231005020159_5")]
+    partial class _5
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,15 +59,15 @@ namespace Salao.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -86,15 +86,15 @@ namespace Salao.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -113,15 +113,15 @@ namespace Salao.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -152,6 +152,27 @@ namespace Salao.Migrations
                     b.ToTable("Servico");
                 });
 
+            modelBuilder.Entity("Salao.Models.UnidadeAtendimento", b =>
+                {
+                    b.Property<int>("UnidadeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BarbeiroId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Cep")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Endereco")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("UnidadeId");
+
+                    b.ToTable("UnidadeAtendimento");
+                });
+
             modelBuilder.Entity("Salao.Models.AtendimentoAgendado", b =>
                 {
                     b.HasOne("Salao.Models.Barbeiro", "Barbeiro")
@@ -177,6 +198,22 @@ namespace Salao.Migrations
                     b.Navigation("Cliente");
 
                     b.Navigation("Servico");
+                });
+
+            modelBuilder.Entity("Salao.Models.Barbeiro", b =>
+                {
+                    b.HasOne("Salao.Models.UnidadeAtendimento", "Local")
+                        .WithMany("Funcionarios")
+                        .HasForeignKey("BarbeiroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Local");
+                });
+
+            modelBuilder.Entity("Salao.Models.UnidadeAtendimento", b =>
+                {
+                    b.Navigation("Funcionarios");
                 });
 #pragma warning restore 612, 618
         }

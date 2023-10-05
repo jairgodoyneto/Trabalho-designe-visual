@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Salao.Data;
 using Salao.Models;
 using Microsoft.OpenApi.Models;
+using System.Security.Cryptography;
 namespace Salao.Controllers;
 
 
@@ -32,11 +33,11 @@ public class BarbeiroController : ControllerBase
     }
     [HttpPost()]
     [Route("inserir Barbeiro")]
-    public IActionResult Cadastrar(Barbeiro Barbeiro)
+    public IActionResult Cadastrar(Barbeiro barbeiro)
     {
-        _context.Add(Barbeiro);
+        _context.Add(barbeiro);
         _context.SaveChanges();
-        return Created("",Barbeiro);
+        return Created("",barbeiro);
     }
     [HttpDelete()]
     [Route("excluir barbeiro/{id}")]

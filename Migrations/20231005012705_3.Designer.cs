@@ -11,8 +11,8 @@ using Salao.Data;
 namespace Salao.Migrations
 {
     [DbContext(typeof(SalaoDbContext))]
-    [Migration("20231003064112_10")]
-    partial class _10
+    [Migration("20231005012705_3")]
+    partial class _3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,18 +52,12 @@ namespace Salao.Migrations
             modelBuilder.Entity("Salao.Models.Barbeiro", b =>
                 {
                     b.Property<int>("BarbeiroId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<string>("Endereco")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("EnderecoId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -162,6 +156,9 @@ namespace Salao.Migrations
                 {
                     b.Property<int>("UnidadeId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BarbeiroId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Cep")

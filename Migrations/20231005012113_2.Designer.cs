@@ -11,8 +11,8 @@ using Salao.Data;
 namespace Salao.Migrations
 {
     [DbContext(typeof(SalaoDbContext))]
-    [Migration("20231003225154_testeUp")]
-    partial class testeUp
+    [Migration("20231005012113_2")]
+    partial class _2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,30 +49,6 @@ namespace Salao.Migrations
                     b.ToTable("AtendimentoAgendado");
                 });
 
-            modelBuilder.Entity("Salao.Models.AtendimentoAvulso", b =>
-                {
-                    b.Property<int>("AtendimentoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BarbeiroId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ServicoId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("AtendimentoId");
-
-                    b.HasIndex("BarbeiroId");
-
-                    b.HasIndex("ServicoId");
-
-                    b.ToTable("AtendimentoAvulso");
-                });
-
             modelBuilder.Entity("Salao.Models.Barbeiro", b =>
                 {
                     b.Property<int>("BarbeiroId")
@@ -91,11 +67,16 @@ namespace Salao.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("UnidadeAtendimentoUnidadeId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("BarbeiroId");
+
+                    b.HasIndex("UnidadeAtendimentoUnidadeId");
 
                     b.ToTable("Barbeiro");
                 });
@@ -182,9 +163,6 @@ namespace Salao.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BarbeiroId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("Cep")
                         .HasColumnType("INTEGER");
 
@@ -224,32 +202,11 @@ namespace Salao.Migrations
                     b.Navigation("Servico");
                 });
 
-            modelBuilder.Entity("Salao.Models.AtendimentoAvulso", b =>
-                {
-                    b.HasOne("Salao.Models.Barbeiro", "Barbeiro")
-                        .WithMany()
-                        .HasForeignKey("BarbeiroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Salao.Models.Servico", "Servico")
-                        .WithMany()
-                        .HasForeignKey("ServicoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Barbeiro");
-
-                    b.Navigation("Servico");
-                });
-
             modelBuilder.Entity("Salao.Models.Barbeiro", b =>
                 {
                     b.HasOne("Salao.Models.UnidadeAtendimento", null)
                         .WithMany("Funcionarios")
-                        .HasForeignKey("BarbeiroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UnidadeAtendimentoUnidadeId");
                 });
 
             modelBuilder.Entity("Salao.Models.UnidadeAtendimento", b =>

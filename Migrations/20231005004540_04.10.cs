@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Salao.Migrations
 {
     /// <inheritdoc />
-    public partial class AlteradoTodasAsModels : Migration
+    public partial class _0410 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -82,7 +82,6 @@ namespace Salao.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     ClienteId = table.Column<int>(type: "INTEGER", nullable: false),
                     BarbeiroId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Servico_id = table.Column<int>(type: "INTEGER", nullable: false),
                     ServicoId = table.Column<int>(type: "INTEGER", nullable: false),
                     Data = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },

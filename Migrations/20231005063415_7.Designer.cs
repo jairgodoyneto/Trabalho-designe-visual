@@ -11,8 +11,8 @@ using Salao.Data;
 namespace Salao.Migrations
 {
     [DbContext(typeof(SalaoDbContext))]
-    [Migration("20231003065324_12")]
-    partial class _12
+    [Migration("20231005063415_7")]
+    partial class _7
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,42 +20,34 @@ namespace Salao.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
 
-            modelBuilder.Entity("Salao.Models.AtendimentoAgendado", b =>
+            modelBuilder.Entity("Salao.Models.Agenda", b =>
                 {
-                    b.Property<int>("AtendimentoId")
+                    b.Property<int>("AgendaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("BarbeiroId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ClienteId")
+                    b.Property<int>("UnidadeId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ServicoId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("AtendimentoId");
+                    b.HasKey("AgendaId");
 
                     b.HasIndex("BarbeiroId");
 
-                    b.HasIndex("ClienteId");
+                    b.HasIndex("UnidadeId");
 
-                    b.HasIndex("ServicoId");
-
-                    b.ToTable("AtendimentoAgendado");
+                    b.ToTable("Agenda");
                 });
 
-            modelBuilder.Entity("Salao.Models.AtendimentoAvulso", b =>
+            modelBuilder.Entity("Salao.Models.Atendimento", b =>
                 {
                     b.Property<int>("AtendimentoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AtendimentoAvulsoId")
+                    b.Property<int?>("AgendaId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("BarbeiroId")
@@ -69,19 +61,28 @@ namespace Salao.Migrations
 
                     b.HasKey("AtendimentoId");
 
+                    b.HasIndex("AgendaId");
+
                     b.HasIndex("BarbeiroId");
 
                     b.HasIndex("ServicoId");
 
-                    b.ToTable("AtendimentoAvulso");
+                    b.ToTable("Atendimento");
+
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Salao.Models.Barbeiro", b =>
                 {
                     b.Property<int>("BarbeiroId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -89,15 +90,12 @@ namespace Salao.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("UnidadeAtendimentoUnidadeId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("BarbeiroId");
+
+                    b.HasIndex("UnidadeAtendimentoUnidadeId");
 
                     b.ToTable("Barbeiro");
                 });
@@ -112,15 +110,11 @@ namespace Salao.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -139,15 +133,11 @@ namespace Salao.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -168,6 +158,9 @@ namespace Salao.Migrations
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Duracao")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -198,33 +191,44 @@ namespace Salao.Migrations
 
             modelBuilder.Entity("Salao.Models.AtendimentoAgendado", b =>
                 {
+                    b.HasBaseType("Salao.Models.Atendimento");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Horario")
+                        .HasColumnType("TEXT");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("AtendimentoAgendado");
+                });
+
+            modelBuilder.Entity("Salao.Models.Agenda", b =>
+                {
                     b.HasOne("Salao.Models.Barbeiro", "Barbeiro")
                         .WithMany()
                         .HasForeignKey("BarbeiroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Salao.Models.Cliente", "Cliente")
+                    b.HasOne("Salao.Models.UnidadeAtendimento", "Unidade")
                         .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Salao.Models.Servico", "Servico")
-                        .WithMany()
-                        .HasForeignKey("ServicoId")
+                        .HasForeignKey("UnidadeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Barbeiro");
 
-                    b.Navigation("Cliente");
-
-                    b.Navigation("Servico");
+                    b.Navigation("Unidade");
                 });
 
-            modelBuilder.Entity("Salao.Models.AtendimentoAvulso", b =>
+            modelBuilder.Entity("Salao.Models.Atendimento", b =>
                 {
+                    b.HasOne("Salao.Models.Agenda", null)
+                        .WithMany("Atendimentos")
+                        .HasForeignKey("AgendaId");
+
                     b.HasOne("Salao.Models.Barbeiro", "Barbeiro")
                         .WithMany()
                         .HasForeignKey("BarbeiroId")
@@ -246,9 +250,29 @@ namespace Salao.Migrations
                 {
                     b.HasOne("Salao.Models.UnidadeAtendimento", null)
                         .WithMany("Funcionarios")
-                        .HasForeignKey("BarbeiroId")
+                        .HasForeignKey("UnidadeAtendimentoUnidadeId");
+                });
+
+            modelBuilder.Entity("Salao.Models.AtendimentoAgendado", b =>
+                {
+                    b.HasOne("Salao.Models.Atendimento", null)
+                        .WithOne()
+                        .HasForeignKey("Salao.Models.AtendimentoAgendado", "AtendimentoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Salao.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("Salao.Models.Agenda", b =>
+                {
+                    b.Navigation("Atendimentos");
                 });
 
             modelBuilder.Entity("Salao.Models.UnidadeAtendimento", b =>

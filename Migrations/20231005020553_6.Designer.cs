@@ -11,8 +11,8 @@ using Salao.Data;
 namespace Salao.Migrations
 {
     [DbContext(typeof(SalaoDbContext))]
-    [Migration("20231003073859_16")]
-    partial class _16
+    [Migration("20231005020553_6")]
+    partial class _6
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,30 +49,6 @@ namespace Salao.Migrations
                     b.ToTable("AtendimentoAgendado");
                 });
 
-            modelBuilder.Entity("Salao.Models.AtendimentoAvulso", b =>
-                {
-                    b.Property<int>("AtendimentoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BarbeiroId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ServicoId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("AtendimentoId");
-
-                    b.HasIndex("BarbeiroId");
-
-                    b.HasIndex("ServicoId");
-
-                    b.ToTable("AtendimentoAvulso");
-                });
-
             modelBuilder.Entity("Salao.Models.Barbeiro", b =>
                 {
                     b.Property<int>("BarbeiroId")
@@ -80,6 +56,10 @@ namespace Salao.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -91,11 +71,12 @@ namespace Salao.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("UnidadeAtendimentoUnidadeId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("BarbeiroId");
+
+                    b.HasIndex("UnidadeAtendimentoUnidadeId");
 
                     b.ToTable("Barbeiro");
                 });
@@ -110,15 +91,15 @@ namespace Salao.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -137,15 +118,15 @@ namespace Salao.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -221,32 +202,11 @@ namespace Salao.Migrations
                     b.Navigation("Servico");
                 });
 
-            modelBuilder.Entity("Salao.Models.AtendimentoAvulso", b =>
-                {
-                    b.HasOne("Salao.Models.Barbeiro", "Barbeiro")
-                        .WithMany()
-                        .HasForeignKey("BarbeiroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Salao.Models.Servico", "Servico")
-                        .WithMany()
-                        .HasForeignKey("ServicoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Barbeiro");
-
-                    b.Navigation("Servico");
-                });
-
             modelBuilder.Entity("Salao.Models.Barbeiro", b =>
                 {
                     b.HasOne("Salao.Models.UnidadeAtendimento", null)
                         .WithMany("Funcionarios")
-                        .HasForeignKey("BarbeiroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UnidadeAtendimentoUnidadeId");
                 });
 
             modelBuilder.Entity("Salao.Models.UnidadeAtendimento", b =>

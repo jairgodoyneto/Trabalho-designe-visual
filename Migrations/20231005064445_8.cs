@@ -5,7 +5,7 @@
 namespace Salao.Migrations
 {
     /// <inheritdoc />
-    public partial class deuBomTeste3 : Migration
+    public partial class _8 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -35,7 +35,7 @@ namespace Salao.Models
             get => _cpf; 
             set => _cpf = value; 
         }
-        public string email
+        public string Email
         {
             get=> _email;
             set=> _email=value;

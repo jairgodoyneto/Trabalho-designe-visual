@@ -5,19 +5,16 @@
 namespace Salao.Migrations
 {
     /// <inheritdoc />
-    public partial class _8 : Migration
+    public partial class _2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<int>(
-                name: "BarbeiroId",
+            migrationBuilder.AddColumn<int>(
+                name: "UnidadeAtendimentoUnidadeId",
                 table: "Barbeiro",
                 type: "INTEGER",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "INTEGER")
-                .OldAnnotation("Sqlite:Autoincrement", true);
+                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "UnidadeAtendimento",
@@ -25,7 +22,7 @@ namespace Salao.Migrations
                 {
                     UnidadeId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Enderco = table.Column<string>(type: "TEXT", nullable: false),
+                    Endereco = table.Column<string>(type: "TEXT", nullable: false),
                     Cep = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -33,33 +30,36 @@ namespace Salao.Migrations
                     table.PrimaryKey("PK_UnidadeAtendimento", x => x.UnidadeId);
                 });
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Barbeiro_UnidadeAtendimento_BarbeiroId",
+            migrationBuilder.CreateIndex(
+                name: "IX_Barbeiro_UnidadeAtendimentoUnidadeId",
                 table: "Barbeiro",
-                column: "BarbeiroId",
+                column: "UnidadeAtendimentoUnidadeId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Barbeiro_UnidadeAtendimento_UnidadeAtendimentoUnidadeId",
+                table: "Barbeiro",
+                column: "UnidadeAtendimentoUnidadeId",
                 principalTable: "UnidadeAtendimento",
-                principalColumn: "UnidadeId",
-                onDelete: ReferentialAction.Cascade);
+                principalColumn: "UnidadeId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Barbeiro_UnidadeAtendimento_BarbeiroId",
+                name: "FK_Barbeiro_UnidadeAtendimento_UnidadeAtendimentoUnidadeId",
                 table: "Barbeiro");
 
             migrationBuilder.DropTable(
                 name: "UnidadeAtendimento");
 
-            migrationBuilder.AlterColumn<int>(
-                name: "BarbeiroId",
-                table: "Barbeiro",
-                type: "INTEGER",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "INTEGER")
-                .Annotation("Sqlite:Autoincrement", true);
+            migrationBuilder.DropIndex(
+                name: "IX_Barbeiro_UnidadeAtendimentoUnidadeId",
+                table: "Barbeiro");
+
+            migrationBuilder.DropColumn(
+                name: "UnidadeAtendimentoUnidadeId",
+                table: "Barbeiro");
         }
     }
 }
