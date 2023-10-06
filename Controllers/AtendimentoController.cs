@@ -32,7 +32,7 @@ public class AtendimentoController : ControllerBase
         if(servicoTemp is null) return NotFound();
         atendimento.Servico=servicoTemp;
 
-        atendimento.Data=new DateTime(2023,mes,dia,hora,minutos,0);
+        atendimento.Horario=new DateTime(2023,mes,dia,hora,minutos,0);
 
         _context.Add(atendimento);
         _context.SaveChanges();

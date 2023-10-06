@@ -23,7 +23,7 @@ public class ServicoController : ControllerBase
         return Created("",servico);
     }
     [HttpPut()]
-    [Route("alterar")]
+    [Route("alterar servico")]
     public async Task<ActionResult> Alterar(Servico servico)
     {
         if (_context is null) return NotFound();
@@ -35,7 +35,7 @@ public class ServicoController : ControllerBase
         return Ok();
     }
     [HttpDelete()]
-    [Route("excluir/{id}")]
+    [Route("excluir servico/{id}")]
     public async Task<ActionResult> Excluir(int id)
     {
         if (_context is null) return NotFound();
@@ -47,7 +47,7 @@ public class ServicoController : ControllerBase
         return Ok();
     }
     [HttpGet()]
-    [Route("Listar")]
+    [Route("Listar servicos")]
     public async Task<ActionResult<IEnumerable<Servico>>> ListarServico()
     {
         if (_context is null) return NotFound();

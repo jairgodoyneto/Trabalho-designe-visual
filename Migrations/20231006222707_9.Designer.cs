@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Salao.Data;
 
@@ -10,9 +11,11 @@ using Salao.Data;
 namespace Salao.Migrations
 {
     [DbContext(typeof(SalaoDbContext))]
-    partial class SalaoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231006222707_9")]
+    partial class _9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
@@ -50,9 +53,6 @@ namespace Salao.Migrations
                     b.Property<int>("BarbeiroId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("ServicoId")
                         .HasColumnType("INTEGER");
 
@@ -61,8 +61,6 @@ namespace Salao.Migrations
                     b.HasIndex("AgendaId");
 
                     b.HasIndex("BarbeiroId");
-
-                    b.HasIndex("ClienteId");
 
                     b.HasIndex("ServicoId");
 
@@ -192,8 +190,13 @@ namespace Salao.Migrations
                 {
                     b.HasBaseType("Salao.Models.Atendimento");
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("Horario")
                         .HasColumnType("TEXT");
+
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("AtendimentoAgendado");
                 });
@@ -236,12 +239,6 @@ namespace Salao.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Salao.Models.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Salao.Models.Servico", "Servico")
                         .WithMany()
                         .HasForeignKey("ServicoId")
@@ -249,8 +246,6 @@ namespace Salao.Migrations
                         .IsRequired();
 
                     b.Navigation("Barbeiro");
-
-                    b.Navigation("Cliente");
 
                     b.Navigation("Servico");
                 });
@@ -269,6 +264,14 @@ namespace Salao.Migrations
                         .HasForeignKey("Salao.Models.AtendimentoAgendado", "AtendimentoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Salao.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("Salao.Models.AtendimentoAvulso", b =>

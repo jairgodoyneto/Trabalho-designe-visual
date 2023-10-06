@@ -51,4 +51,15 @@ public class BarbeiroController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok();
     }
+    [HttpPatch()]
+    [Route("mudar Barbeiro/{id}")]
+    public async Task<ActionResult> MudarBarbeiro(int id, Barbeiro barbeiro)
+    {
+        if (_context is null) return NotFound();
+        if (_context.Barbeiro is null) return NotFound();
+        var BarbeiroTemp = await _context.Barbeiro.FindAsync(id);
+        if(BarbeiroTemp is null) return NotFound();
+        await _context.SaveChangesAsync();
+        return Ok();        
+    }
 }

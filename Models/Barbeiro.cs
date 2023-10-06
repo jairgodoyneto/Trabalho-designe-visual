@@ -13,9 +13,6 @@ namespace Salao.Models
         public Barbeiro() : base()
         {
         }
-         public Barbeiro(string senha, string cpf, string nome, string email) : base(nome, cpf, email)
-        {
-        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BarbeiroId

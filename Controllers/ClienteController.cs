@@ -52,15 +52,15 @@ public class ClienteController :ControllerBase
         return Ok();
     }
     [HttpPatch()]
-    [Route("mudarSenha/{id}")]
-    public async Task<ActionResult> MudarSenha(int id)
+    [Route("mudarCliente")]
+    public async Task<ActionResult> MudarDescricao(Cliente cliente)
     {
-        if (_context is null) return NotFound();
-        if (_context.Cliente is null) return NotFound();
-        var clienteTemp = await _context.Cliente.FindAsync(id);
-        if(clienteTemp is null) return NotFound();
+        if(_context is null) return NotFound();
+        if(_context.Cliente is null) return NotFound();
+        var clienteTemp = await _context.Cliente.FindAsync(cliente.ClienteId);
+        if( clienteTemp is null) return NotFound();
         await _context.SaveChangesAsync();
-        return Ok();        
+        return Ok();
     }
     [HttpDelete()]
     [Route("excluir cliente/{id}")]
@@ -74,4 +74,4 @@ public class ClienteController :ControllerBase
         await _context.SaveChangesAsync();
         return Ok();
     }
-}
+} 

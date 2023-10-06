@@ -29,6 +29,7 @@ namespace Salao.Models
         {
             get=>_id;
             set=>_id=value;
+            
         }
         public int BarbeiroId{get;set;}
         [ForeignKey("BarbeiroId")]

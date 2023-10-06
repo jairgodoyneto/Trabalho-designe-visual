@@ -10,7 +10,7 @@ public class SalaoDbContext : DbContext
     public DbSet<Gerente>? Gerente{get;set;}
     public DbSet<Servico>? Servico{get;set;}
     public DbSet<UnidadeAtendimento>? UnidadeAtendimento{get;set;}
-    //public DbSet<AtendimentoAvulso>? AtendimentoAvulso{get;set;}
+    public DbSet<AtendimentoAvulso>? AtendimentoAvulso{get;set;}
     public DbSet<Agenda>? Agenda{get;set;}
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

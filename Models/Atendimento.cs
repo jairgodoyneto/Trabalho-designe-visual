@@ -7,23 +7,23 @@ namespace Salao.Models
 {
     public abstract class Atendimento
     {
+        private Cliente _cliente;
         public Barbeiro _barbeiro;
 
         public Servico _servico;
 
-        public DateTime _data;
         
         public Atendimento()
         {
             _barbeiro = new Barbeiro();
             _servico = new Servico();
-            _data = DateTime.Now;
+            _cliente = new Cliente();
         }
-        public Atendimento(Barbeiro barbeiro, Servico servico, DateTime data)
+        public Atendimento(Barbeiro barbeiro, Servico servico, Cliente cliente)
         {
             _barbeiro = barbeiro;
             _servico = servico;
-            _data= data;
+            _cliente = cliente;
         }
 
         public int BarbeiroId{get;set;}
@@ -36,7 +36,8 @@ namespace Salao.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AtendimentoId {get;set;}
-       
-        public DateTime Data{get => _data;set =>_data =value;}
+        public int ClienteId{get;set;}
+        [ForeignKey("ClienteId")]
+        public  Cliente Cliente{get=> _cliente;set=> _cliente=value;}
     }
 }
