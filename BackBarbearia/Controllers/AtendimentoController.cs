@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Salao.Data;
 using Salao.Models;
 namespace Salao.Controllers;
-
+[ApiController]
+[Route("[controller]")]
 public class AtendimentoController : ControllerBase
 {
     private SalaoDbContext? _context;

@@ -6,7 +6,8 @@ using Microsoft.OpenApi.Models;
 using System.Security.Cryptography;
 namespace Salao.Controllers;
 
-
+[ApiController]
+[Route("[controller]")]
 public class BarbeiroController : ControllerBase
 {
     private SalaoDbContext? _context;

@@ -4,6 +4,8 @@ using Salao.Data;
 using Salao.Models;
 
 namespace Salao.Controllers;
+[ApiController]
+[Route("[controller]")]
 public class ClienteController :ControllerBase
 {
     private SalaoDbContext? _context;
@@ -21,7 +23,7 @@ public class ClienteController :ControllerBase
         return await _context.Cliente.ToListAsync();
     }
     [HttpGet()]
-    [Route("buscar clientes/{id}")]
+    [Route("buscar Cliente/{id}")]
     public async Task<ActionResult<Cliente>> Buscar([FromRoute] int id)
     {
         if (_context is null) return NotFound();
@@ -32,7 +34,7 @@ public class ClienteController :ControllerBase
         return cliente;
     }
     [HttpPost()]
-    [Route("inserir Cliente")]
+    [Route("inserirCliente")]
     public IActionResult Cadastrar(Cliente cliente)
     {
         _context.Add(cliente);
@@ -40,7 +42,7 @@ public class ClienteController :ControllerBase
         return Created("",cliente);
     }
     [HttpPut()]
-    [Route("alterar cliente")]
+    [Route("alterar Cliente")]
     public async Task<ActionResult> Alterar(Cliente cliente)
     {
         if (_context is null) return NotFound();
@@ -52,7 +54,7 @@ public class ClienteController :ControllerBase
         return Ok();
     }
     [HttpPatch()]
-    [Route("mudarCliente")]
+    [Route("mudar Cliente")]
     public async Task<ActionResult> MudarDescricao(Cliente cliente)
     {
         if(_context is null) return NotFound();
