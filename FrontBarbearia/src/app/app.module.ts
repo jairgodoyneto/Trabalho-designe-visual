@@ -12,10 +12,14 @@ import { ModalModule} from 'ngx-bootstrap/modal';
 
 import {ClientesService} from './clientes.service';
 import {ClientesComponent} from './components/clientes/clientes.component';
+
+import {BarbeirosService} from './barbeiros.service';
+import {BarbeirosComponent} from './components/barbeiros/barbeiros.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ClientesComponent
+    ClientesComponent,
+    BarbeirosComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,7 @@ import {ClientesComponent} from './components/clientes/clientes.component';
     ReactiveFormsModule,
     ModalModule.forRoot()
   ],
-  providers: [HttpClientModule, ClientesService],
+  providers: [HttpClientModule, ClientesService,BarbeirosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

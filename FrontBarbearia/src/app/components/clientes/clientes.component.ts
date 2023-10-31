@@ -11,7 +11,7 @@ import { Cliente } from 'src/app/Cliente';
 export class ClientesComponent implements OnInit {
   formulario: any;
   tituloFormulario: string = '';
-  
+  id:number=0;
   constructor(private clientesService : ClientesService) { }
 
   ngOnInit(): void {
@@ -22,10 +22,15 @@ export class ClientesComponent implements OnInit {
       email: new FormControl(null)
     })
   }
-  enviarFormulario(): void {
+  enviarCadastro(): void {
     const cliente : Cliente = this.formulario.value;
     this.clientesService.cadastrar(cliente).subscribe(result => {
-      alert('Carro inserido com sucesso.');
+      alert('Cliente inserido com sucesso.');
+    })
+  }
+  enviarBusca(): void {
+    this.clientesService.buscar(this.id).subscribe(result => {
+      alert("busca funcionou")
     })
   } 
 }
