@@ -43,8 +43,29 @@
           </div>
         </div>
       </form>
+    </div>
+    <div
+      class="col-6 border border-light rounded p-5 shadow"
+      *ngIf="formularioBusca"
+    >
       <h6>Buscar Cliente</h6>
-      <form [FormGroup]="formulario" (ngSubmite="realizarBusca()")>
+      <form [formGroup]="formularioBusca" (ngSubmit)="realizarBusca()">
+        <div class="form-group">
+          <label>Id</label>
+          <input
+            type="number"
+            class="form-control form-control-sm"
+            formControlName="id"
+          />
+        </div>
+        <div class="form-group">
+          <label>Nome</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="nome"
+          />
+        </div>
         <div class="form-group">
           <label>Cpf</label>
           <input
@@ -53,7 +74,91 @@
             formControlName="cpf"
           />
         </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="email"
+          />
+        </div>
+        <div class="container">
+          <div class="row">
+            <div>
+              <button type="submit" class="btn btn-sm btn-outline-secondary">
+                Buscar
+              </button>
+            </div>
+            <div class="pl-1">
+              <button type="button" class="btn btn-sm btn-light">Voltar</button>
+            </div>
+          </div>
+        </div>
       </form>
-      </div>
+    </div>
+    <div
+      class="col-6 border border-light rounded p-5 shadow"
+      *ngIf="formularioListClientes"
+    >
+      <h6>Listar Clientes</h6>
+      <form [formGroup]="formularioListClientes" (ngSubmit)="listarCLientes()">
+        <div class = container p-5>
+          <table class = "table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of clientes">
+                <td>{{ cliente.clienteId}}</td>
+                <td>{{ cliente.nome}}</td>
+                <td>{{ cliente.cpf}}</td>
+                <td>{{ cliente.email}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="container">
+              <div>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                  Buscar
+                </button>
+              </div>
+              <div class="pl-1">
+                <button type="button" class="btn btn-sm btn-light">Voltar</button>
+              </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div
+      class="col-6 border border-light rounded p-5 shadow"
+      *ngIf="formularioExcluir"
+    >
+      <h6>Excluir Cliente</h6>
+      <form [formGroup]="formularioExcluir" (ngSubmit)="excluirCliente()">
+        <div class="form-group">
+          <label>Id</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="id"
+          />
+        </div>
+        <div class="container">
+          <div>
+            <button type="submit" class="btn btn-sm btn-outline-secondary">
+              Buscar
+            </button>
+          </div>
+          <div class="pl-1">
+            <button type="button" class="btn btn-sm btn-light">Voltar</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
