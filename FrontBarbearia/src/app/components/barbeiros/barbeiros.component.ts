@@ -22,7 +22,7 @@ export class BarbeirosComponent implements OnInit{
   enviarFormulario(): void {
     const barbeiro : Barbeiro = this.formulario.value;
     this.barbeirosService.cadastrar(barbeiro).subscribe(result=> {
-      alert('Carro inserido com sucesso');
+      alert('Barbeiro inserido com sucesso');
     })
   }
 }

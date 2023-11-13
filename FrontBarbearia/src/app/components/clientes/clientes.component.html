@@ -44,7 +44,16 @@
         </div>
       </form>
       <h6>Buscar Cliente</h6>
-      <form [FormGroup]=""
-    </div>
+      <form [FormGroup]="formulario" (ngSubmite="realizarBusca()")>
+        <div class="form-group">
+          <label>Cpf</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="cpf"
+          />
+        </div>
+      </form>
+      </div>
   </div>
 </div>
