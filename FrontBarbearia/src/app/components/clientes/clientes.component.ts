@@ -12,14 +12,12 @@ import { Observer } from 'rxjs';
 export class ClientesComponent implements OnInit {
   formulario: any;
   clientes: Array<Cliente> | undefined;
-  tituloFormulario: string = '';
   formularioBusca:any;
   formularioListClientes:any;
   formularioExcluir:any;
   constructor(private clientesService : ClientesService) { }
 
   ngOnInit(): void {
-    this.tituloFormulario = 'Novo Cliente';
     this.formulario = new FormGroup({
       nome: new FormControl(null),
       cpf: new FormControl(null),
@@ -53,11 +51,22 @@ export class ClientesComponent implements OnInit {
       complete(): void {
       },
     };
+    this.clientesService.cadastrar(cliente).subscribe(observer);
   }
   realizarBusca(): void {
     const id = this.formularioBusca.get('id').value;
-    this.clientesService.buscar(id).subscribe(cliente => {
-      const clienteTemp: Cliente = cliente;
+    const observer: Observer<Cliente> = {
+      next(_result): void {
+        alert('Cliente encontrado.');
+      },
+      error(_error): void {
+        alert('Erro ao procurar!');
+      },
+      complete(): void {
+      },
+    };
+    this.clientesService.buscar(id).subscribe(observer => {
+      const clienteTemp: Cliente = observer;
       this.formularioBusca.get('nome').setValue(clienteTemp.nome);
       this.formularioBusca.get('cpf').setValue(clienteTemp.cpf);
       this.formularioBusca.get('email').setValue(clienteTemp.email);

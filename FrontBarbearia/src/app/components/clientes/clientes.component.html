@@ -4,7 +4,7 @@
       class="col-6 border border-light rounded p-5 shadow"
       *ngIf="formulario"
     >
-      <h6>{{ tituloFormulario }}</h6>
+      <h6>Cadastrar Cliente</h6>
       <form [formGroup]="formulario" (ngSubmit)="enviarCadastro()">
         <div class="form-group">
           <label>Nome</label>
@@ -64,6 +64,7 @@
             type="text"
             class="form-control form-control-sm"
             formControlName="nome"
+            readonly
           />
         </div>
         <div class="form-group">
@@ -72,6 +73,7 @@
             type="text"
             class="form-control form-control-sm"
             formControlName="cpf"
+            readonly
           />
         </div>
         <div class="form-group">
@@ -80,6 +82,7 @@
             type="text"
             class="form-control form-control-sm"
             formControlName="email"
+            readonly
           />
         </div>
         <div class="container">
@@ -151,7 +154,7 @@
         <div class="container">
           <div>
             <button type="submit" class="btn btn-sm btn-outline-secondary">
-              Buscar
+              Excluir
             </button>
           </div>
           <div class="pl-1">
