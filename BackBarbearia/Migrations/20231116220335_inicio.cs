@@ -15,15 +15,15 @@ namespace Salao.Migrations
                 name: "Cliente",
                 columns: table => new
                 {
-                    ClienteId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nome = table.Column<string>(type: "TEXT", nullable: true),
-                    Cpf = table.Column<string>(type: "TEXT", nullable: true),
-                    Email = table.Column<string>(type: "TEXT", nullable: true)
+                    Nome = table.Column<string>(type: "TEXT", nullable: false),
+                    Cpf = table.Column<string>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cliente", x => x.ClienteId);
+                    table.PrimaryKey("PK_Cliente", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -32,9 +32,9 @@ namespace Salao.Migrations
                 {
                     GerenteId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nome = table.Column<string>(type: "TEXT", nullable: true),
-                    Cpf = table.Column<string>(type: "TEXT", nullable: true),
-                    Email = table.Column<string>(type: "TEXT", nullable: true)
+                    Nome = table.Column<string>(type: "TEXT", nullable: false),
+                    Cpf = table.Column<string>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,16 +45,16 @@ namespace Salao.Migrations
                 name: "Servico",
                 columns: table => new
                 {
-                    ServicoId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Nome = table.Column<string>(type: "TEXT", nullable: true),
                     Descricao = table.Column<string>(type: "TEXT", nullable: true),
-                    Custo = table.Column<float>(type: "REAL", nullable: true),
-                    Duracao = table.Column<int>(type: "INTEGER", nullable: true)
+                    Custo = table.Column<float>(type: "REAL", nullable: false),
+                    Duracao = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Servico", x => x.ServicoId);
+                    table.PrimaryKey("PK_Servico", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -78,9 +78,9 @@ namespace Salao.Migrations
                     BarbeiroId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     UnidadeAtendimentoUnidadeId = table.Column<int>(type: "INTEGER", nullable: true),
-                    Nome = table.Column<string>(type: "TEXT", nullable: true),
-                    Cpf = table.Column<string>(type: "TEXT", nullable: true),
-                    Email = table.Column<string>(type: "TEXT", nullable: true)
+                    Nome = table.Column<string>(type: "TEXT", nullable: false),
+                    Cpf = table.Column<string>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,62 +96,67 @@ namespace Salao.Migrations
                 name: "Agenda",
                 columns: table => new
                 {
-                    AgendaId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    BarbeiroId = table.Column<int>(type: "INTEGER", nullable: true),
-                    UnidadeId = table.Column<int>(type: "INTEGER", nullable: true)
+                    BarbeiroId = table.Column<int>(type: "INTEGER", nullable: false),
+                    UnidadeId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Agenda", x => x.AgendaId);
+                    table.PrimaryKey("PK_Agenda", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Agenda_Barbeiro_BarbeiroId",
                         column: x => x.BarbeiroId,
                         principalTable: "Barbeiro",
-                        principalColumn: "BarbeiroId");
+                        principalColumn: "BarbeiroId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Agenda_UnidadeAtendimento_UnidadeId",
                         column: x => x.UnidadeId,
                         principalTable: "UnidadeAtendimento",
-                        principalColumn: "UnidadeId");
+                        principalColumn: "UnidadeId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Atendimento",
                 columns: table => new
                 {
-                    AtendimentoId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    BarbeiroId = table.Column<int>(type: "INTEGER", nullable: true),
-                    ServicoId = table.Column<int>(type: "INTEGER", nullable: true),
-                    ClienteId = table.Column<int>(type: "INTEGER", nullable: true),
+                    BarbeiroId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ServicoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ClienteId = table.Column<int>(type: "INTEGER", nullable: false),
                     AgendaId = table.Column<int>(type: "INTEGER", nullable: true),
                     Discriminator = table.Column<string>(type: "TEXT", nullable: false),
                     Horario = table.Column<DateTime>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Atendimento", x => x.AtendimentoId);
+                    table.PrimaryKey("PK_Atendimento", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Atendimento_Agenda_AgendaId",
                         column: x => x.AgendaId,
                         principalTable: "Agenda",
-                        principalColumn: "AgendaId");
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Atendimento_Barbeiro_BarbeiroId",
                         column: x => x.BarbeiroId,
                         principalTable: "Barbeiro",
-                        principalColumn: "BarbeiroId");
+                        principalColumn: "BarbeiroId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Atendimento_Cliente_ClienteId",
                         column: x => x.ClienteId,
                         principalTable: "Cliente",
-                        principalColumn: "ClienteId");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Atendimento_Servico_ServicoId",
                         column: x => x.ServicoId,
                         principalTable: "Servico",
-                        principalColumn: "ServicoId");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

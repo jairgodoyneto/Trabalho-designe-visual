@@ -1,9 +1,9 @@
 import { Pessoa } from "./Pessoa";
 
 export class Barbeiro extends Pessoa{
-    barbeiroId: number;
+    id: number;
     constructor(){
         super();
-        this.barbeiroId=0;
+        this.id=0;
     }
 }

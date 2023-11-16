@@ -76,7 +76,7 @@ export class ClientesComponent implements OnInit {
     this.clientesService.listar().subscribe(clientes=>{
       this.clientes= clientes;
       if(this.clientes && this.clientes.length >0){
-        this.formularioListClientes.get('id').setValue(this.clientes[0].clienteId);
+        this.formularioListClientes.get('id').setValue(this.clientes[0].id);
       }
     })
   }

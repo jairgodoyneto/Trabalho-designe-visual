@@ -65,7 +65,7 @@ public class AtendimentoAvulsoController : ControllerBase
     {
         if (_context is null) return NotFound();
         if (_context.AtendimentoAvulso is null) return NotFound();
-        var AtendimentoAvulsoTemp = await _context.AtendimentoAvulso.FindAsync(AtendimentoAvulso.AtendimentoId);
+        var AtendimentoAvulsoTemp = await _context.AtendimentoAvulso.FindAsync(AtendimentoAvulso.Id);
         if(AtendimentoAvulsoTemp is null) return NotFound();
         _context.AtendimentoAvulso.Update(AtendimentoAvulso);
         await _context.SaveChangesAsync();

@@ -59,7 +59,7 @@ public class AgendaController : ControllerBase
     {
         if (_context is null) return NotFound();
         if (_context.Agenda is null) return NotFound();
-        var AgendaTemp = await _context.Agenda.FindAsync(Agenda.AgendaId);
+        var AgendaTemp = await _context.Agenda.FindAsync(Agenda.Id);
         if(AgendaTemp is null) return NotFound();
         _context.Agenda.Update(Agenda);
         await _context.SaveChangesAsync();

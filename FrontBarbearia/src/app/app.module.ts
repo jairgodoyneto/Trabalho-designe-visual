@@ -15,11 +15,15 @@ import {ClientesComponent} from './components/clientes/clientes.component';
 
 import {BarbeirosService} from './barbeiros.service';
 import {BarbeirosComponent} from './components/barbeiros/barbeiros.component';
+
+import {ServicosService} from './servicos.service';
+import {ServicosComponent} from './components/servicos/servicos.component';
 @NgModule({
   declarations: [
     AppComponent,
     ClientesComponent,
-    BarbeirosComponent
+    BarbeirosComponent,
+    ServicosComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,7 @@ import {BarbeirosComponent} from './components/barbeiros/barbeiros.component';
     ReactiveFormsModule,
     ModalModule.forRoot()
   ],
-  providers: [HttpClientModule, ClientesService,BarbeirosService],
+  providers: [HttpClientModule, ClientesService,BarbeirosService,ServicosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

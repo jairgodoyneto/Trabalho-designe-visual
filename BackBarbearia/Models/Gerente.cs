@@ -10,13 +10,8 @@ namespace Salao.Models
     [Table("Gerente")]
     public class Gerente : Pessoa
     {
-        private int _gerenteId;
-        
-        public Gerente():base()
-        {
-        }
        [Key]
        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-       public int GerenteId{get=>_gerenteId;set=>_gerenteId=value;}
+       public int GerenteId{get;set;}
     }
 }

@@ -77,7 +77,7 @@ export class BarbeirosComponent implements OnInit {
     this.barbeirosService.listar().subscribe(barbeiros=>{
       this.barbeiros= barbeiros;
       if(this.barbeiros && this.barbeiros.length >0){
-        this.formularioListBarbeiros.get('id').setValue(this.barbeiros[0].barbeiroId);
+        this.formularioListBarbeiros.get('id').setValue(this.barbeiros[0].id);
       }
     })
   }

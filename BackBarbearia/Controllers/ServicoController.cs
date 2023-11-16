@@ -29,7 +29,7 @@ public class ServicoController : ControllerBase
     {
         if (_context is null) return NotFound();
         if (_context.Servico is null) return NotFound();
-        var servicoTemp = await _context.Servico.FindAsync(servico.ServicoId);
+        var servicoTemp = await _context.Servico.FindAsync(servico.Id);
         if(servicoTemp is null) return NotFound();
         _context.Servico.Update(servicoTemp);
         await _context.SaveChangesAsync();
@@ -55,5 +55,14 @@ public class ServicoController : ControllerBase
         if (_context.Servico is null)
             return NotFound();
         return await _context.Servico.ToListAsync();
+    }
+    [HttpGet()]
+    [Route("buscar Servico/{id}")]
+    public async Task<ActionResult<Servico>> Buscar([FromRoute] int id)
+    {
+        if (_context.Servico is null)return NotFound();
+        Servico? servico = await _context.Servico.FindAsync(id);
+        if (servico is null)return NotFound();
+        return servico;
     }
 }

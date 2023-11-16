@@ -1,0 +1,187 @@
+<div class="container p-5">
+    <div class="row">
+      <div
+        class="col-6 border border-light rounded p-5 shadow"
+        *ngIf="formulario"
+      >
+        <h6>Cadastrar Servico</h6>
+        <form [formGroup]="formulario" (ngSubmit)="enviarCadastro()">
+          <div class="form-group">
+            <label>Nome</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="nome"
+            />
+          </div>
+          <div class="form-group">
+            <label>Descrição</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="descricao"
+            />
+          </div>
+          <div class="form-group">
+            <label>Custo</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="custo"
+            />
+          </div>
+          <div class="form-group">
+            <label>Duração</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="duracao"
+            />
+          </div>
+          <div class="container">
+            <div class="row">
+              <div>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                  Salvar
+                </button>
+              </div>
+              <div class="pl-1">
+                <button type="button" class="btn btn-sm btn-light">Voltar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div
+        class="col-6 border border-light rounded p-5 shadow"
+        *ngIf="formularioBusca"
+      >
+        <h6>Buscar Servico</h6>
+        <form [formGroup]="formularioBusca" (ngSubmit)="realizarBusca()">
+          <div class="form-group">
+            <label>Id</label>
+            <input
+              type="number"
+              class="form-control form-control-sm"
+              formControlName="id"
+            />
+          </div>
+          <div class="form-group">
+            <label>Nome</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="nome"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <label>Descrição</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="descricao"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <label>Custo</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="custo"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <label>Duração</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="duracao"
+              readonly
+            />
+          </div>
+          <div class="container">
+            <div class="row">
+              <div>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                  Buscar
+                </button>
+              </div>
+              <div class="pl-1">
+                <button type="button" class="btn btn-sm btn-light">Voltar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div
+        class="col-6 border border-light rounded p-5 shadow"
+        *ngIf="formularioListServicos"
+      >
+        <h6>Listar Servicos</h6>
+        <form [formGroup]="formularioListServicos" (ngSubmit)="listarServicos()">
+          <div class = container p-5>
+            <table class = "table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Descrição</th>
+                  <th>Custo</th>
+                  <th>Duração</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let servico of servicos">
+                  <td>{{ servico.id}}</td>
+                  <td>{{ servico.nome}}</td>
+                  <td>{{ servico.descricao}}</td>
+                  <td>{{ servico.custo}}</td>
+                  <td>{{ servico.duracao}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="container">
+                <div>
+                  <button type="submit" class="btn btn-sm btn-outline-secondary">
+                    Buscar
+                  </button>
+                </div>
+                <div class="pl-1">
+                  <button type="button" class="btn btn-sm btn-light">Voltar</button>
+                </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div
+        class="col-6 border border-light rounded p-5 shadow"
+        *ngIf="formularioExcluir"
+      >
+        <h6>Excluir Servico</h6>
+        <form [formGroup]="formularioExcluir" (ngSubmit)="excluirServico()">
+          <div class="form-group">
+            <label>Id</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="id"
+            />
+          </div>
+          <div class="container">
+            <div>
+              <button type="submit" class="btn btn-sm btn-outline-secondary">
+                Excluir
+              </button>
+            </div>
+            <div class="pl-1">
+              <button type="button" class="btn btn-sm btn-light">Voltar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
