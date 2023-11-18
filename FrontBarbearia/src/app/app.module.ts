@@ -18,12 +18,16 @@ import {BarbeirosComponent} from './components/barbeiros/barbeiros.component';
 
 import {ServicosService} from './servicos.service';
 import {ServicosComponent} from './components/servicos/servicos.component';
+
+import { UnidadesAtendimentoService } from './unidades-atendimento.service';
+import { UnidadesAtendimentoComponent } from './components/unidades-atendimento/unidades-atendimento.component';
 @NgModule({
   declarations: [
     AppComponent,
     ClientesComponent,
     BarbeirosComponent,
-    ServicosComponent
+    ServicosComponent,
+    UnidadesAtendimentoComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ import {ServicosComponent} from './components/servicos/servicos.component';
     ReactiveFormsModule,
     ModalModule.forRoot()
   ],
-  providers: [HttpClientModule, ClientesService,BarbeirosService,ServicosService],
+  providers: [HttpClientModule, ClientesService,BarbeirosService,ServicosService,
+    UnidadesAtendimentoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

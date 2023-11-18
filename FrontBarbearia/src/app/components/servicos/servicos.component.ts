@@ -8,6 +8,7 @@ import { Observer } from 'rxjs';
   templateUrl: './servicos.component.html',
   styleUrls: ['./servicos.component.css']
 })
+
 export class ServicosComponent implements OnInit {
   formulario:any;
   formularioBusca:any;
@@ -66,8 +67,9 @@ export class ServicosComponent implements OnInit {
       complete(): void {
       },
     };
-    this.servicosService.buscar(id).subscribe(observer => {
-      const servicoTemp: Servico = observer;
+    this.servicosService.buscar(id).subscribe(observer);
+    this.servicosService.buscar(id).subscribe(servico => {
+      const servicoTemp: Servico = servico;
       this.formularioBusca.get('nome').setValue(servicoTemp.nome);
       this.formularioBusca.get('descricao').setValue(servicoTemp.descricao);
       this.formularioBusca.get('custo').setValue(servicoTemp.custo);

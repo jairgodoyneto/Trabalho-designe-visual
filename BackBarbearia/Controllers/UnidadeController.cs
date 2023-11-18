@@ -34,10 +34,10 @@ public class UnidadeController : ControllerBase
         return UnidadeAtendimento;
     }
     [HttpPost()]
-    [Route("inserir Unidade/{id}")]
-    public async Task<IActionResult> Cadastrar([FromRoute] List<int> id, string endereco, int cep)
+    [Route("inserir Unidade")]
+    public IActionResult Cadastrar(UnidadeAtendimento unidadeAtendimento)
     {
-        UnidadeAtendimento unidadeAtendimento = new();
+       /* UnidadeAtendimento unidadeAtendimento = new();
         foreach (var x in id)
         {
             if(_context.Barbeiro == null) return NotFound("Barbeiro vazio");
@@ -47,20 +47,19 @@ public class UnidadeController : ControllerBase
                 return NotFound("Barbeiro não encontrado");
             }
             unidadeAtendimento.Funcionarios.Add(barbeiro);
-        }
-        unidadeAtendimento.Cep = cep;
-        unidadeAtendimento.Endereco=endereco;
+        }*/
+
         _context.Add(unidadeAtendimento);
         _context.SaveChanges();
         return Created("",unidadeAtendimento);
     }
     [HttpPut()]
-    [Route("alterar unidade atendimento")]
+    [Route("alterar unidade")]
     public async Task<ActionResult> Alterar(UnidadeAtendimento UnidadeAtendimento)
     {
         if (_context is null) return NotFound();
         if (_context.UnidadeAtendimento is null) return NotFound();
-        var UnidadeAtendimentoTemp = await _context.UnidadeAtendimento.FindAsync(UnidadeAtendimento.UnidadeId);
+        var UnidadeAtendimentoTemp = await _context.UnidadeAtendimento.FindAsync(UnidadeAtendimento.Id);
         if(UnidadeAtendimentoTemp is null) return NotFound();
         _context.UnidadeAtendimento.Update(UnidadeAtendimento);
         await _context.SaveChangesAsync();

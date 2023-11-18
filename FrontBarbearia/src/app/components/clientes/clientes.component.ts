@@ -65,8 +65,9 @@ export class ClientesComponent implements OnInit {
       complete(): void {
       },
     };
-    this.clientesService.buscar(id).subscribe(observer => {
-      const clienteTemp: Cliente = observer;
+    this.clientesService.buscar(id).subscribe(observer);
+    this.clientesService.buscar(id).subscribe(cliente => {
+      const clienteTemp: Cliente = cliente;
       this.formularioBusca.get('nome').setValue(clienteTemp.nome);
       this.formularioBusca.get('cpf').setValue(clienteTemp.cpf);
       this.formularioBusca.get('email').setValue(clienteTemp.email);

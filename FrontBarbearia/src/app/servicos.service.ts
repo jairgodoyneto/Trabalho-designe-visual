@@ -21,13 +21,13 @@ export class ServicosService {
     const url = `${this.apiUrl}/buscar Servico/${id}`;
     return this.http.get<Servico>(url);
   }
-  cadastrar(Servico: Servico): Observable<any> {
+  cadastrar(servico: Servico): Observable<any> {
     const url = `${this.apiUrl}/inserir Servico/`;
-    return this.http.post<Servico>(url, Servico, httpOptions);
+    return this.http.post<Servico>(url, servico, httpOptions);
   }
-  atualizar(Servico: Servico): Observable<any> {
+  atualizar(servico: Servico): Observable<any> {
     const url = `${this.apiUrl}/alterar servico`;
-    return this.http.put<Servico>(url, Servico, httpOptions);
+    return this.http.put<Servico>(url, servico, httpOptions);
   }
   excluir(id: number): Observable<any> {
     const url = `${this.apiUrl}/excluir servico/${id}`;
