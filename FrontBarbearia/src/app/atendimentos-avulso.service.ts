@@ -16,7 +16,7 @@ export class AtendimentosAvulsoService {
   apiUrl = 'http://localhost:5000/AtendimentoAvulso';
   constructor(private http: HttpClient) { }
   listar(): Observable<AtendimentoAvulso[]> {
-    const url = `${this.apiUrl}/Listar Atendimento Avulsos`;
+    const url = `${this.apiUrl}/Listar Atendimento Avulso`;
     return this.http.get<AtendimentoAvulso[]>(url);
   }
   buscar(id: number): Observable<AtendimentoAvulso> {

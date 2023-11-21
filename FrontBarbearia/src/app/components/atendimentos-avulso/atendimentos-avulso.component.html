@@ -38,7 +38,7 @@
         <form [formGroup]="formularioBusca" (ngSubmit)="realizarBusca()">
           <div class="form-group">
             <label>Id</label>
-            <input type="number" class="form-control form-control-sm" formControlName="id" readonly />
+            <input type="number" class="form-control form-control-sm" formControlName="id" />
           </div>
           <div class="form-group">
             <label>Servico</label>
@@ -63,7 +63,7 @@
         </form>
       </div>
       <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formularioListar">
-        <h6>Listar Barbeiros</h6>
+        <h6>Listar Atendimentos</h6>
         <form [formGroup]="formularioListar" (ngSubmit)="listarAtendimentos()">
           <div class="container p-5">
             <table class="table">
@@ -77,8 +77,8 @@
               <tbody>
                 <tr *ngFor="let atendimento of atendimentos">
                   <td>{{ atendimento.id }}</td>
-                  <td>{{ atendimento.servico?.nome }}</td>
-                  <td>{{ atendimento.cliente?.nome }}</td>
+                  <td>{{ atendimento.servico }}</td>
+                  <td>{{ atendimento.cliente }}</td>
                 </tr>
               </tbody>
             </table>
@@ -99,10 +99,10 @@
         <h6>Excluir atendimento</h6>
         <form [formGroup]="formularioExcluir" (ngSubmit)="excluir()">
           <div class="form-group">
-            <label>Servico</label>
-            <select class="form-control form-control-sm" formControlName="Id">
+            <label>Atendimento</label>
+            <select class="form-control form-control-sm" formControlName="id">
               <option *ngFor="let atendimento of atendimentos" [value]="atendimento.id">
-                {{ atendimento.servico?.nome }}
+                {{ atendimento.id }}
               </option>
             </select>
           </div>
@@ -131,7 +131,7 @@
           </div>
           <div class="form-group">
             <label>Cliente</label>
-            <input type="text" class="form-control form-control-sm" formControlName="ClienteId" />
+            <input type="text" class="form-control form-control-sm" formControlName="clienteId" />
           </div>
           <div class="container">
             <div class="row">

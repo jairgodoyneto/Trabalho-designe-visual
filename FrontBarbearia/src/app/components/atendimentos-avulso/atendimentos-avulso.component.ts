@@ -115,9 +115,31 @@ export class AtendimentosAvulsoComponent implements	OnInit{
      this.atendimentoService.listar().subscribe(observer);
   }
   excluir():void {
-    
-  }
-  alterar():void{
-    
-  }
+    const id = this.formularioExcluir.get('id').value;
+    const observer: Observer<AtendimentoAvulso> = {
+      next(_result): void {
+        alert('Atendimento excluido com sucesso.');
+      },
+      error(_error): void {
+        alert('Erro ao excluir!');
+      },
+      complete(): void {
+      },
+    };
+  this.atendimentoService.excluir(id).subscribe(observer);
+}
+alterar(): void{
+  const atendimento:AtendimentoAvulso = this.formularioAlterar.value;
+  const observer: Observer<AtendimentoAvulso> = {
+    next(_result): void {
+      alert('Atendimento alterado com sucesso.');
+    },
+    error(_error): void {
+      alert('Erro ao alterar!');
+    },
+    complete(): void {
+    },
+  };
+  this.atendimentoService.atualizar(atendimento).subscribe(observer);
+}
 }
