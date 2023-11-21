@@ -12,6 +12,5 @@ namespace Salao.Models
         public int Id { get; set; }
         public string? Endereco { get; set; }
         public int? Cep { get ; set ; }
-        public List<Barbeiro>? Funcionarios { get; set ; }
     }
 }

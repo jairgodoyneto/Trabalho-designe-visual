@@ -9,6 +9,8 @@ namespace Salao.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int BarbeiroId{get;set;}
+        public int Id{get;set;}
+        public int Unidadeid{get;set;}
+        public UnidadeAtendimento? Unidade{get;set;}
     }
 }

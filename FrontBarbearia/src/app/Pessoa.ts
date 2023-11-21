@@ -1,4 +1,4 @@
-export class Pessoa {
+export abstract class Pessoa {
     nome: string = '';
     cpf: string ='';
     email: string = '';

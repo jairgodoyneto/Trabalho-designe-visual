@@ -16,7 +16,7 @@ public class AtendimentoAvulsoController : ControllerBase
     }
 
     [HttpGet()]
-    [Route("Listar AtendimentoAvulso")]
+    [Route("Listar Atendimento Avulso")]
     public async Task<ActionResult<IEnumerable<AtendimentoAvulso>>> Listar()
     {
         if (_context is null) return NotFound();
@@ -24,7 +24,7 @@ public class AtendimentoAvulsoController : ControllerBase
         return await _context.AtendimentoAvulso.ToListAsync();
     }
     [HttpGet()]
-    [Route("buscar AtendimentoAvulso/{id}")]
+    [Route("buscar Atendimento Avulso/{id}")]
     public async Task<ActionResult<AtendimentoAvulso>> Buscar([FromRoute] int id)
     {
         if (_context is null) return NotFound();
@@ -35,28 +35,11 @@ public class AtendimentoAvulsoController : ControllerBase
         return AtendimentoAvulso;
     }
     [HttpPost()]
-    [Route("Novo_Atendimento_avulso/{ClienteId}/{BarbeiroId}/{ServicoId}")]
-    public async Task<IActionResult> Cadastrar([FromRoute] int ClienteId,[FromRoute] int BarbeiroId,[FromRoute] int ServicoId)
+    [Route("Novo Atendimento Avulso/")]
+    public async Task<IActionResult> Cadastrar(AtendimentoAvulso atendimento)
     {
-        if(_context is null) return NotFound();
-        if(_context.Barbeiro is null) return NotFound();
-        var barbeiroTemp= await _context.Barbeiro.FindAsync(BarbeiroId);
-        if (barbeiroTemp is null) return NotFound();
-        AtendimentoAvulso atendimento = new();
-        atendimento.Barbeiro=barbeiroTemp;
-
-        if(_context.Cliente is null) return NotFound();
-        var clienteTemp= await _context.Cliente.FindAsync(ClienteId);
-        if (clienteTemp is null) return NotFound();
-        atendimento.Cliente=clienteTemp;
-
-        if(_context.Servico is null) return NotFound();
-        var servicoTemp= await _context.Servico.FindAsync(ServicoId);
-        if(servicoTemp is null) return NotFound();
-        atendimento.Servico=servicoTemp;
-
-        _context.Add(atendimento);
-        _context.SaveChanges();
+        _context?.Add(atendimento);
+        _context?.SaveChanges();
         return Created("",atendimento);
     }
     [HttpPut()]

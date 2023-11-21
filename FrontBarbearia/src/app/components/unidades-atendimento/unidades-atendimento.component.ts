@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Observer } from 'rxjs';
+import { FormControl, FormGroup,FormArray } from '@angular/forms';
+import { Observable, Observer } from 'rxjs';
 import { Barbeiro } from 'src/app/Barbeiro';
 import { BarbeirosService } from 'src/app/barbeiros.service';
 import { unidadeAtendimento } from 'src/app/unidadeAtendimento';
@@ -13,38 +13,26 @@ import { UnidadesAtendimentoService } from 'src/app/unidades-atendimento.service
 
 export class UnidadesAtendimentoComponent implements OnInit {
   formulario: any;
-  i:number=0;
   formularioBusca: any;
   formularioListUnidades:any;
   formularioExcluir:any;
   unidade: unidadeAtendimento | undefined;
-  barbeiros: Array<Barbeiro> | undefined;
-  barbeirosBusca: Array<Barbeiro> | undefined;
   unidades:Array<unidadeAtendimento> | undefined;
-
   constructor(private UnidadeService:UnidadesAtendimentoService, private barbeiroService:BarbeirosService){}
   ngOnInit(): void {
-      this.barbeiroService.listar().subscribe(barbeiros=>{
-        this.barbeiros=barbeiros;
-        if(this.barbeiros && this.barbeiros.length > 0){
-          this.formulario.get('barbeiroId')?.setValue(this.barbeiros[0].id);
-        }
-      })
       this.formulario = new FormGroup({
         endereco: new FormControl(null),
-        cep: new FormControl(null),
-        barbeiroId: new FormControl(null)
+        cep: new FormControl(null)
       })
       this.formularioBusca = new FormGroup({
         id: new FormControl(null),
         endereco: new FormControl(null),
-        cep: new FormControl(null),
+        cep: new FormControl(null)
       })
       this.formularioListUnidades = new FormGroup({
         id: new FormControl(null),
         endereco: new FormControl(null),
-        cep: new FormControl(null),
-        barbeiros: new FormControl(null),
+        cep: new FormControl(null)
       })
       this.formularioExcluir = new FormGroup({
         id: new FormControl(null)
@@ -52,49 +40,41 @@ export class UnidadesAtendimentoComponent implements OnInit {
   }
   cadastrarUnidade(): void {
     const unidade: unidadeAtendimento = this.formulario.value;
-    const observer: Observer<unidadeAtendimento> = {
-      next(_result): void {
-        alert('Unidade salva com sucesso.');
-      },
-      error(_error): void {
-        alert('Erro ao salvar!');
-      },
-      complete(): void {
-      },
-    };
+      const observer: Observer<unidadeAtendimento> = {
+        next(_result): void {
+          alert('Unidade salva com sucesso.');
+        },
+        error(_error): void {
+          alert('Erro ao salvar!');
+        },
+        complete(): void {
+        },
+      };
+
       this.UnidadeService.cadastrar(unidade).subscribe(observer);
-  }
-  realizarBusca(): void{
-    const id: number=this.formularioBusca.get('id').value;
+    };
+  realizarBusca(): void {
+    const id: any = this.formularioBusca.get('id').value;
+  
     const observer: Observer<unidadeAtendimento> = {
-      next(_result): void {
+      next: (unidade) => {
         alert('Unidade encontrada com sucesso.');
+        this.unidade = unidade;
+        this.formularioBusca.get('endereco').setValue(unidade.endereco);
+        this.formularioBusca.get('cep').setValue(unidade.cep);
       },
-      error(_error): void {
+      error: (_error) => {
         alert('Erro ao efetuar busca!');
       },
-      complete(): void {
-      },
+      complete: () => {},
     };
+  
     this.UnidadeService.buscar(id).subscribe(observer);
-    this.UnidadeService.buscar(id).subscribe(unidade=>{
-      this.unidade= unidade;
-      this.formularioBusca.get('endereco').setValue(unidade.endereco);
-      this.formularioBusca.get('cep').setValue(unidade.cep);
-      this.barbeirosBusca=this.unidade.funcionarios;
-    })
   }
   listarUnidades(): void {
-    i=0;
-    this.UnidadeService.listar().subscribe(unidades=>{
-      this.unidades = unidades;
-      this.unidades.forEach(unidade => {
-        this.barbeirosBusca[]set(unidade.funcionarios);
-      });
-      if(this.unidades && this.unidades.length >0){
-        this.formularioListUnidades.get('id').setValue(this.unidades[0].id);
-      }
-    })
+    this.UnidadeService.listar().subscribe(unidades => {
+      this.unidades=unidades;
+    });
   }
   excluirUnidade(): void {
     const id = this.formularioExcluir.get('id').value;

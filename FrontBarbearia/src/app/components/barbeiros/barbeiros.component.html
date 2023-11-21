@@ -30,6 +30,14 @@
             formControlName="email"
           />
         </div>
+        <div class="form-group">
+          <label>Unidade Id</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="unidadeId"
+          />
+        </div>
         <div class="container">
           <div class="row">
             <div>
@@ -85,6 +93,15 @@
             readonly
           />
         </div>
+        <div class="form-group">
+          <label>Endereco</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="endereco"
+            readonly
+          />
+        </div>
         <div class="container">
           <div class="row">
             <div>
@@ -99,14 +116,11 @@
         </div>
       </form>
     </div>
-    <div
-      class="col-6 border border-light rounded p-5 shadow"
-      *ngIf="formularioListBarbeiros"
-    >
+    <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formularioListBarbeiros">
       <h6>Listar Barbeiros</h6>
       <form [formGroup]="formularioListBarbeiros" (ngSubmit)="listarBarbeiros()">
-        <div class = container p-5>
-          <table class = "table">
+        <div class="container p-5">
+          <table class="table">
             <thead>
               <tr>
                 <th>ID</th>
@@ -125,14 +139,14 @@
             </tbody>
           </table>
           <div class="container">
-              <div>
-                <button type="submit" class="btn btn-sm btn-outline-secondary">
-                  listar
-                </button>
-              </div>
-              <div class="pl-1">
-                <button type="button" class="btn btn-sm btn-light">Voltar</button>
-              </div>
+            <div>
+              <button type="submit" class="btn btn-sm btn-outline-secondary">
+                Listar
+              </button>
+            </div>
+            <div class="pl-1">
+              <button type="button" class="btn btn-sm btn-light">Voltar</button>
+            </div>
           </div>
         </div>
       </form>
@@ -159,6 +173,66 @@
           </div>
           <div class="pl-1">
             <button type="button" class="btn btn-sm btn-light">Voltar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div
+      class="col-6 border border-light rounded p-5 shadow"
+      *ngIf="formularioAlterar"
+    >
+      <h6>Alterar</h6>
+      <form [formGroup]="formularioAlterar" (ngSubmit)="Alterar()">
+        <div class="form-group">
+          <label>Id</label>
+          <input
+            type="number"
+            class="form-control form-control-sm"
+            formControlName="id"
+          />
+        </div>
+        <div class="form-group">
+          <label>Nome</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="nome"
+          />
+        </div>
+        <div class="form-group">
+          <label>Cpf</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="cpf"
+          />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="email"
+          />
+        </div>
+        <div class="form-group">
+          <label>Unidade Id</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="unidadeId"
+          />
+        </div>
+        <div class="container">
+          <div class="row">
+            <div>
+              <button type="submit" class="btn btn-sm btn-outline-secondary">
+                Buscar
+              </button>
+            </div>
+            <div class="pl-1">
+              <button type="button" class="btn btn-sm btn-light">Voltar</button>
+            </div>
           </div>
         </div>
       </form>

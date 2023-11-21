@@ -35,22 +35,11 @@ public class AgendaController : ControllerBase
         return Agenda;
     }
     [HttpPost()]
-    [Route("inserirAgenda/{barbeiroId}/{unidadeId}")]
-    public async  Task<IActionResult> Cadastrar([FromRoute]int barbeiroId,[FromRoute]int unidadeId)
+    [Route("cadastrar Agenda/")]
+    public IActionResult Cadastrar(Agenda agenda)
     {
-        if (_context ==null){return NotFound("Base vazia");}
-        if (_context.Barbeiro == null){return NotFound("Base barbeiro vazia");}
-        if (_context.UnidadeAtendimento == null){return NotFound("Base unidade vazia");}
-
-        var barbeiro = await _context.Barbeiro.FindAsync(barbeiroId);
-        if(barbeiro == null){return NotFound("nao achou barbeiro");}
-        var unidadeAtendimento = await _context.UnidadeAtendimento.FindAsync(unidadeId);
-        if(unidadeAtendimento == null){return NotFound("Nao achou unidade");}
-        Agenda agenda= new();
-        agenda.Barbeiro=barbeiro;
-        agenda.Unidade=unidadeAtendimento;
-        _context.Add(agenda);
-        _context.SaveChanges();
+        _context?.Add(agenda);
+        _context?.SaveChanges();
         return Created("",agenda);
     }
     [HttpPut()]

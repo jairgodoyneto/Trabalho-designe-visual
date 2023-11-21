@@ -37,18 +37,6 @@ public class UnidadeController : ControllerBase
     [Route("inserir Unidade")]
     public IActionResult Cadastrar(UnidadeAtendimento unidadeAtendimento)
     {
-       /* UnidadeAtendimento unidadeAtendimento = new();
-        foreach (var x in id)
-        {
-            if(_context.Barbeiro == null) return NotFound("Barbeiro vazio");
-            Barbeiro? barbeiro=await _context.Barbeiro.FindAsync(x);
-            if(barbeiro == null)
-            {
-                return NotFound("Barbeiro não encontrado");
-            }
-            unidadeAtendimento.Funcionarios.Add(barbeiro);
-        }*/
-
         _context.Add(unidadeAtendimento);
         _context.SaveChanges();
         return Created("",unidadeAtendimento);
