@@ -24,6 +24,7 @@ export class AtendimentosAvulsoComponent implements	OnInit{
   formularioAlterar:any;
   servicos: Array<Servico> | undefined;
   clientes: Array<Cliente> | undefined;
+  atendimentos:Array<AtendimentoAvulso> | undefined;
   ngOnInit(): void {
     this.servicoService.listar().subscribe(servicos=>{
       this.servicos=servicos;
@@ -37,14 +38,20 @@ export class AtendimentosAvulsoComponent implements	OnInit{
         this.formulario.get('clienteId')?.setValue(this.clientes[0].id);
       }
     })
+    this.atendimentoService.listar().subscribe(atendimentos=>{
+      this.atendimentos= atendimentos;
+      if (this.atendimentos && this.atendimentos.length > 0) {
+        this.formularioExcluir.get('id')?.setValue(this.atendimentos[0].id);
+      }
+    })
     this.formulario = new FormGroup({
       servicoId : new FormControl(null),
       clienteId : new FormControl(null)
     })
     this.formularioBusca = new FormGroup({
       id: new FormControl(null),
-      servicoId : new FormControl(null),
-      clienteId : new FormControl(null)
+      servico : new FormControl(null),
+      cliente : new FormControl(null)
     })
     this.formularioListar = new FormGroup({
       id: new FormControl(null),
@@ -78,8 +85,12 @@ export class AtendimentosAvulsoComponent implements	OnInit{
     const id = this.formularioBusca.get('id').value;
     const observer: Observer<AtendimentoAvulso> = {
       
-      next(_result): void {
+      next: (atendimento: AtendimentoAvulso) => {
         alert('Atendimento encontrado com sucesso.');
+        this.formularioBusca.get('clienteId').setValue(atendimento.clienteId);
+        this.formularioBusca.get('clienteNome').setValue(atendimento.cliente?.nome);
+        this.formularioBusca.get('clienteId').setValue(atendimento.servicoId);
+        this.formularioBusca.get('servicoNome').setValue(atendimento.servico?.nome);
       },
       error(_error): void {
         alert('Erro ao procurar!');
@@ -88,12 +99,25 @@ export class AtendimentosAvulsoComponent implements	OnInit{
       },
     };
     this.atendimentoService.buscar(id).subscribe(observer);
-    this.atendimentoService.buscar(id).subscribe(atendimento => { 
-      this.formularioBusca.get('clienteId').setValue(atendimento.clienteId);
-      this.formularioBusca.get('clienteNome').setValue(atendimento.cliente?.nome);
-      this.formularioBusca.get('clienteId').setValue(atendimento.servicoId);
-      this.formularioBusca.get('servicoNome').setValue(atendimento.servico?.nome);
-    });
   }
-
+  listarAtendimentos():void{
+      const observer: Observer<Array<AtendimentoAvulso>> = {
+        next:(atendimentos: Array<AtendimentoAvulso>) => {
+          alert('Atendimentos encontrado com sucesso.');
+          this.atendimentos=atendimentos;
+        },
+        error(_error) {
+          alert('Erro ao procurar!');
+        },
+        complete() {
+        },
+      }
+     this.atendimentoService.listar().subscribe(observer);
+  }
+  excluir():void {
+    
+  }
+  alterar():void{
+    
+  }
 }

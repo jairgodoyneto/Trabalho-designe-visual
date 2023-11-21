@@ -23,9 +23,7 @@ import { UnidadesAtendimentoService } from './unidades-atendimento.service';
 import { UnidadesAtendimentoComponent } from './components/unidades-atendimento/unidades-atendimento.component';
 
 import { AgendasService } from './agendas.service';
-
 import { AtendimentosAgendadoService } from './atendimentos-agendado.service';
-
 import { AtendimentosAvulsoService } from './atendimentos-avulso.service';
 import { AgendasComponent } from './components/agendas/agendas.component';
 import { AtendimentosAvulsoComponent } from './components/atendimentos-avulso/atendimentos-avulso.component';
