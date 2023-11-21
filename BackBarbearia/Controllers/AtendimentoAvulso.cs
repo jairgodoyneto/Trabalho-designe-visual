@@ -42,7 +42,7 @@ public class AtendimentoAvulsoController : ControllerBase
         _context?.SaveChanges();
         return Created("",atendimento);
     }
-    [HttpPut()]
+    [HttpPatch()]
     [Route("alterar Atendimento Avulso ")]
     public async Task<ActionResult> Alterar(AtendimentoAvulso AtendimentoAvulso)
     {

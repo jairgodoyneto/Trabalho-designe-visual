@@ -1,1 +1,159 @@
-<p>atendimentos-agendado works!</p>
+<div class="container p-5">
+    <div class="row">
+      <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formulario">
+        <h6>Cadastrar Atendimento Agendado</h6>
+        <form [formGroup]="formulario" (ngSubmit)="enviarCadastro()">
+          <div class="form-group">
+            <label>Servico</label>
+            <select class="form-control form-control-sm" formControlName="servicoId">
+              <option *ngFor="let servico of servicos" [value]="servico.id">
+                {{ servico.nome }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Cliente</label>
+            <select class="form-control form-control-sm" formControlName="clienteId">
+              <option *ngFor="let cliente of clientes" [value]="cliente.id">
+                {{ cliente.nome }}
+              </option>
+            </select>
+          </div>
+          <!--<div class="form-group">
+            <label>Horario</label>
+            <select class="form-control form-control-sm" formControlName="horario">
+                <option *ngFor="let horario of horarios" [value]="horario.id">
+                  {{ cliente.nome }}
+                </option>
+              </select>
+          </div>-->
+          <div class="container">
+            <div class="row">
+              <div>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                  Cadastrar
+                </button>
+              </div>
+              <div class="pl-1">
+                <button type="button" class="btn btn-sm btn-light">Voltar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formularioBusca">
+        <h6>Buscar atendimento Agendado</h6>
+        <form [formGroup]="formularioBusca" (ngSubmit)="realizarBusca()">
+          <div class="form-group">
+            <label>Id</label>
+            <input type="number" class="form-control form-control-sm" formControlName="id" />
+          </div>
+          <div class="form-group">
+            <label>Servico</label>
+            <input type="text" class="form-control form-control-sm" formControlName="servico" readonly />
+          </div>
+          <div class="form-group">
+            <label>Cliente</label>
+            <input type="text" class="form-control form-control-sm" formControlName="cliente" readonly />
+          </div>
+          <div class="container">
+            <div class="row">
+              <div>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                  Buscar
+                </button>
+              </div>
+              <div class="pl-1">
+                <button type="button" class="btn btn-sm btn-light">Voltar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formularioListar">
+        <h6>Listar Atendimentos</h6>
+        <form [formGroup]="formularioListar" (ngSubmit)="listarAtendimentos()">
+          <div class="container p-5">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Servico</th>
+                  <th>Cliente</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let atendimento of atendimentos">
+                  <td>{{ atendimento.id }}</td>
+                  <td>{{ atendimento.servicoId }}</td>
+                  <td>{{ atendimento.clienteId }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="container">
+              <div>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                  Listar
+                </button>
+              </div>
+              <div class="pl-1">
+                <button type="button" class="btn btn-sm btn-light">Voltar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formularioExcluir">
+        <h6>Excluir atendimento</h6>
+        <form [formGroup]="formularioExcluir" (ngSubmit)="excluir()">
+          <div class="form-group">
+            <label>Atendimento</label>
+            <select class="form-control form-control-sm" formControlName="id">
+              <option *ngFor="let atendimento of atendimentos" [value]="atendimento.id">
+                {{ atendimento.id }}
+              </option>
+            </select>
+          </div>
+          <div class="container">
+            <div>
+              <button type="submit" class="btn btn-sm btn-outline-secondary">
+                Excluir
+              </button>
+            </div>
+            <div class="pl-1">
+              <button type="button" class="btn btn-sm btn-light">Voltar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formularioAlterar">
+        <h6>Alterar atendimento</h6>
+        <form [formGroup]="formularioAlterar" (ngSubmit)="alterar()">
+          <div class="form-group">
+            <label>Id</label>
+            <input type="number" class="form-control form-control-sm" formControlName="id" />
+          </div>
+          <div class="form-group">
+            <label>Servico</label>
+            <input type="text" class="form-control form-control-sm" formControlName="servicoId" />
+          </div>
+          <div class="form-group">
+            <label>Cliente</label>
+            <input type="text" class="form-control form-control-sm" formControlName="clienteId" />
+          </div>
+          <div class="container">
+            <div class="row">
+              <div>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                  Buscar
+                </button>
+              </div>
+              <div class="pl-1">
+                <button type="button" class="btn btn-sm btn-light">Voltar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
