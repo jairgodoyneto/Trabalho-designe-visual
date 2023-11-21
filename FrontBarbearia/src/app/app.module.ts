@@ -28,6 +28,7 @@ import { AtendimentosAvulsoService } from './atendimentos-avulso.service';
 import { AgendasComponent } from './components/agendas/agendas.component';
 import { AtendimentosAvulsoComponent } from './components/atendimentos-avulso/atendimentos-avulso.component';
 import { AtendimentosAgendadoComponent } from './components/atendimentos-agendado/atendimentos-agendado.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { AtendimentosAgendadoComponent } from './components/atendimentos-agendad
     UnidadesAtendimentoComponent,
     AgendasComponent,
     AtendimentosAvulsoComponent,
-    AtendimentosAgendadoComponent
+    AtendimentosAgendadoComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,

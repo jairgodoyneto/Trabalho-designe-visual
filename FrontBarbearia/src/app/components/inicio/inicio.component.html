@@ -1,0 +1,31 @@
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Menu Inicial</title>
+</head>
+<body>
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <h2 class="text-center mb-4">Menu Inicial</h2>
+        
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action" [routerLink]="['/clientes']">Clientes</a>
+            <a class="list-group-item list-group-item-action" [routerLink]="['/barbeiros']">Barbeiros</a>
+            <a class="list-group-item list-group-item-action" [routerLink]="['/servicos']">Servicos</a>
+            <a class="list-group-item list-group-item-action" [routerLink]="['/unidades']">Unidades Atendimento</a>
+            <a class="list-group-item list-group-item-action" [routerLink]="['/agendas']">Agendas</a>
+            <a class="list-group-item list-group-item-action" [routerLink]="['/atendimentoagendado']">Atendimentos Agendados</a>
+            <a class="list-group-item list-group-item-action" [routerLink]="['/atendimentoavulso']">Atendimentos Avulsos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>

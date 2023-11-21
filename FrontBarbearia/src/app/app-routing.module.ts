@@ -7,6 +7,7 @@ import { UnidadesAtendimentoComponent } from './components/unidades-atendimento/
 import { AgendasComponent } from './components/agendas/agendas.component';
 import { AtendimentosAvulsoComponent } from './components/atendimentos-avulso/atendimentos-avulso.component';
 import { AtendimentosAgendadoComponent } from './components/atendimentos-agendado/atendimentos-agendado.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 const routes: Routes = [
   {path: 'clientes', component:ClientesComponent},
   {path: 'barbeiros', component:BarbeirosComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'agendas', component:AgendasComponent},
   {path: 'atendimentoavulso', component:AtendimentosAvulsoComponent},
   {path: 'atendimentoagendado', component:AtendimentosAgendadoComponent},
+  {path: '',component:InicioComponent}
 ];
 
 @NgModule({

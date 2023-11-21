@@ -1,1 +1,174 @@
-<p>agendas works!</p>
+<div class="container p-5">
+    <div class="row">
+        <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formulario">
+            <h6>Cadastrar Agenda</h6>
+            <form [formGroup]="formulario" (ngSubmit)="enviarCadastro()">
+            <div class="form-group">
+                <label>Barbeiro</label>
+                <select class="form-control form-control-sm" formControlName="barbeiroId">
+                <option *ngFor="let barbeiro of barbeiros" [value]="barbeiro.id">
+                    {{ barbeiro.id }}
+                </option>
+                </select>
+            <div class="container">
+                <div class="row">
+                  <div>
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">
+                      Cadastrar
+                    </button>
+                  </div>
+                  <div class="pl-1">
+                    <button type="button" class="btn btn-sm btn-light" [routerLink]="['']">Voltar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </form>
+        </div>
+        <div class="col-6 border border-light rounded p-5 shadow" *ngIf="FormularioInserirHorarioLivre">
+          <h6>Inserir Horario</h6>
+          <form [formGroup]="FormularioInserirHorarioLivre" (ngSubmit)="inserirHorarioLivre()">
+            <div class="form-group">
+              <label>Id</label>
+              <input type="text" class="form-control form-control-sm" formControlName="ano" />
+            </div>
+            <div class="form-group">
+              <label>Ano</label>
+              <input type="text" class="form-control form-control-sm" formControlName="ano" />
+            </div>
+            <div class="form-group">
+              <label>Mes</label>
+              <input type="text" class="form-control form-control-sm" formControlName="mes" />
+            </div>
+            <div class="form-group">
+              <label>Dia</label>
+              <input type="text" class="form-control form-control-sm" formControlName="dia" />
+            </div>
+            <div class="form-group">
+              <label>Hora</label>
+              <input type="text" class="form-control form-control-sm" formControlName="hora" />
+            </div>
+            <div class="form-group">
+              <label>Minutos</label>
+              <input type="text" class="form-control form-control-sm" formControlName="minuto" />
+            </div>
+          <div class="container">
+              <div class="row">
+                <div>
+                  <button type="submit" class="btn btn-sm btn-outline-secondary">
+                    Cadastrar
+                  </button>
+                </div>
+                <div class="pl-1">
+                  <button type="button" class="btn btn-sm btn-light" [routerLink]="['']">Voltar</button>
+                </div>
+              </div>
+            </div>
+            </form>
+        </div>
+        <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formularioBusca">
+            <h6>Buscar Agenda</h6>
+            <form [formGroup]="formularioBusca" (ngSubmit)="realizarBusca()">
+              <div class="form-group">
+                <label>Id</label>
+                <input type="number" class="form-control form-control-sm" formControlName="id" />
+              </div>
+              <div class="form-group">
+                <label>Barbeiro id</label>
+                <input type="text" class="form-control form-control-sm" formControlName="barbeiroId" readonly />
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div>
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">
+                      Buscar
+                    </button>
+                  </div>
+                  <div class="pl-1">
+                    <button type="button" class="btn btn-sm btn-light" [routerLink]="['']">Voltar</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+        </div>
+        <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formularioListar">
+          <h6>Listar Agenda</h6>
+          <form [formGroup]="formularioListar" (ngSubmit)="listarAtendimentos()">
+            <div class="container p-5">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Barbeiro</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let agenda of agendas">
+                    <td>{{ agenda.id }}</td>
+                    <td>{{ agenda.barbeiroId }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="container">
+                <div>
+                  <button type="submit" class="btn btn-sm btn-outline-secondary">
+                    Listar
+                  </button>
+                </div>
+                <div class="pl-1">
+                  <button type="button" class="btn btn-sm btn-light" [routerLink]="['']">Voltar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formularioExcluir">
+          <h6>Excluir Agenda</h6>
+          <form [formGroup]="formularioExcluir" (ngSubmit)="excluir()">
+            <div class="form-group">
+              <label>Agenda</label>
+              <select class="form-control form-control-sm" formControlName="id">
+                <option *ngFor="let agenda of agendas" [value]="agenda.id">
+                  {{ agenda.id }}
+                </option>
+              </select>
+            </div>
+            <div class="container">
+              <div>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                  Excluir
+                </button>
+              </div>
+              <div class="pl-1">
+                <button type="button" class="btn btn-sm btn-light" [routerLink]="['']">Voltar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formularioAlterar">
+          <h6>Alterar Agenda</h6>
+          <form [formGroup]="formularioAlterar" (ngSubmit)="alterar()">
+            <div class="form-group">
+              <label>Id</label>
+              <input type="number" class="form-control form-control-sm" formControlName="id" />
+            </div>
+            <div class="form-group">
+              <label>Barbeiro</label>
+              <input type="text" class="form-control form-control-sm" formControlName="barbeiroId" />
+            </div>
+            <div class="container">
+              <div class="row">
+                <div>
+                  <button type="submit" class="btn btn-sm btn-outline-secondary">
+                    Buscar
+                  </button>
+                </div>
+                <div class="pl-1">
+                  <button type="button" class="btn btn-sm btn-light" [routerLink]="['']">Voltar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
